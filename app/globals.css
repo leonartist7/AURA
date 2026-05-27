@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --aura-cream: #FAF6F0;
+  --aura-espresso: #2A1F1A;
+  --aura-gold: #C9A961;
+  --aura-coral: #E89B6C;
+  --aura-sage: #A8B5A0;
+  --aura-forest: #5C7C50;
+  --aura-mute: #7A6B5D;
+  --aura-line: #EDE4D6;
+}
+
+html,
+body {
+  background: var(--aura-cream);
+  color: var(--aura-espresso);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+/* Pleasant atmospheric gradient that lives behind everything */
+.aura-atmosphere {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(232, 155, 108, 0.18), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 100% 100%, rgba(201, 169, 97, 0.12), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 0% 80%, rgba(168, 181, 160, 0.10), transparent 70%),
+    var(--aura-cream);
+}
+
+/* Focus rings — visible, branded */
+:where(button, a, input, textarea, select, [role='button'], [tabindex]):focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--aura-cream),
+    0 0 0 4px var(--aura-gold);
+  border-radius: 12px;
+}
+
+/* Visually hidden — for screen-reader-only labels */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Numeric counters render with tabular figures for smooth tick-up */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Range slider — clean, gold-accented */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--aura-line);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--aura-gold);
+  border: 3px solid var(--aura-cream);
+  box-shadow: 0 2px 12px rgba(42, 31, 26, 0.18);
+  cursor: pointer;
+  transition: transform 180ms ease-out;
+}
+input[type='range']::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+input[type='range']::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--aura-gold);
+  border: 3px solid var(--aura-cream);
+  box-shadow: 0 2px 12px rgba(42, 31, 26, 0.18);
+  cursor: pointer;
+  border-style: solid;
+}
+
+/* Honour user's motion preference — skill mandate */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,9 @@
+# Media drop folder
+
+Drop:
+- hero-loop.mp4      → Screen 1 background (8s loop, 9:16, MP4 h.264)
+- cards/card-1.png   → Screen 8 first prescription illustration (optional)
+- cards/card-2.png   → Screen 8 second prescription illustration (optional)
+- cards/card-3.png   → Screen 8 third prescription illustration (optional)
+
+App renders tasteful gradient fallbacks when these are missing.
