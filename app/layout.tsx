@@ -16,15 +16,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Aura — Café Health Diagnostic',
+  title: 'AURA — Loyalty, ordering & marketing for cafés',
   description:
-    'A 5-minute, in-person diagnostic for café owners. See your Café Health Score and uncover what is quietly slipping out the door.',
-  applicationName: 'Aura Diagnostic',
+    'AI-powered loyalty, marketing, and ordering systems for cafés and restaurants. Turn first-time visitors into regulars.',
+  applicationName: 'Aura',
   authors: [{ name: 'Aura' }],
   openGraph: {
-    title: 'Aura — Café Health Diagnostic',
+    title: 'AURA — Loyalty, ordering & marketing for cafés',
     description:
-      'See your Café Health Score in 5 minutes. Built for café owners.',
+      'Turn first-time visitors into regulars. Book a free growth demo.',
     type: 'website',
   },
 };
