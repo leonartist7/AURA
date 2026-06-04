@@ -15,6 +15,10 @@ function CozySpaceSection() {
     >
       {/* sticky stage that pins through the cycle */}
       <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
+        {/* real night-café photo, sunk behind the candle gradients for cinematic depth */}
+        <BrandPhoto src="/assets/brand/cozy-night.jpg" alt="A dim café after closing, warm light" fill grade={0.55} fallback={null}
+          imgStyle={{ opacity: 0.5 }} />
+        <div style={{ position: "absolute", inset: 0, background: "var(--espresso)", opacity: 0.45, pointerEvents: "none" }} />
         {/* candle warmth */}
         <div style={{
           position: "absolute", inset: 0,

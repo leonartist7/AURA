@@ -4,6 +4,15 @@
 function HeroSection({ headline }) {
   return (
     <section id="top" className="section grain grain-soft" style={{ paddingTop: 180, paddingBottom: 60, background: "var(--cream)" }}>
+      {/* real café atmosphere, right-anchored + feathered into cream so the headline stays clean */}
+      <div className="hide-mobile" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
+        <BrandPhoto src="/assets/brand/hero-scene.jpg" alt="A warm, sunlit café interior" eager grade={0.1} fallback={null}
+          style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: "58%", borderRadius: 0, opacity: 0.85 }} />
+        <div style={{ position: "absolute", inset: 0,
+          background: "linear-gradient(90deg, var(--cream) 30%, rgba(243,234,215,0.55) 52%, transparent 78%)" }} />
+        <div style={{ position: "absolute", inset: 0,
+          background: "linear-gradient(0deg, var(--cream), transparent 22%, transparent 80%, var(--cream))" }} />
+      </div>
       {/* very subtle warm glow */}
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
         <div style={{
@@ -218,10 +227,10 @@ function SolutionSection() {
   const features = [
   { tag: "Loyalty", title: "Digital loyalty", copy: "Points, rewards, VIP tiers, birthdays, and repeat-visit bonuses, without paper cards.", accent: "var(--terra)", mock: <MockLoyalty /> },
   { tag: "AI", title: "AI promotions", copy: "Campaign ideas for slow hours, happy hours, and quiet customers, drafted and ready to launch.", accent: "var(--plum)", mock: <MockAIIdea /> },
-  { tag: "Ordering", title: "Direct ordering", copy: "QR menus and pickup ordering that help customers order directly from you, commission-free.", accent: "var(--saffron)", mock: <MockOrders /> },
+  { tag: "Ordering", title: "Direct ordering", copy: "QR menus and pickup ordering that help customers order directly from you, commission-free.", accent: "var(--saffron)", img: "/assets/brand/card-ordering.jpg", imgAlt: "A coffee and pastry on a café table with a phone QR menu" },
   { tag: "Game", title: "Gamified rewards", copy: "Spins, streaks, mystery perks, badges, and challenges that make loyalty feel alive.", accent: "var(--rose)", mock: <MockSpinTile /> },
-  { tag: "Data", title: "Customer database", copy: "Names, birthdays, favorite items, phone numbers, and visit history, owned by you.", accent: "var(--sage)", mock: <MockCustomers /> },
-  { tag: "Growth", title: "Social growth", copy: "Campaigns, content ideas, and local ads designed to turn attention into visits.", accent: "var(--honey)", mock: <MockSocial /> }];
+  { tag: "Data", title: "Customer database", copy: "Names, birthdays, favorite items, phone numbers, and visit history, owned by you.", accent: "var(--sage)", img: "/assets/brand/card-regulars.jpg", imgAlt: "A barista chatting with a regular over the counter" },
+  { tag: "Growth", title: "Social growth", copy: "Campaigns, content ideas, and local ads designed to turn attention into visits.", accent: "var(--honey)", img: "/assets/brand/card-social.jpg", imgAlt: "Overhead flat-lay of latte art being photographed for social" }];
 
 
   return (
@@ -262,7 +271,12 @@ function SolutionSection() {
                 {f.title}
               </h3>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-soft)", marginTop: 10 }}>{f.copy}</p>
-              <div style={{ marginTop: "auto", paddingTop: 22 }}>{f.mock}</div>
+              <div style={{ marginTop: "auto", paddingTop: 22 }}>
+                {f.img
+                  ? <BrandPhoto src={f.img} alt={f.imgAlt} radius={12} grade={0.16} style={{ aspectRatio: "16 / 10" }}
+                      fallback={<div style={{ aspectRatio: "16 / 10", borderRadius: 12, background: "linear-gradient(135deg, rgba(214,122,69,0.1), rgba(141,107,141,0.08))", border: "1px solid rgba(42,31,24,0.06)" }} />} />
+                  : f.mock}
+              </div>
             </div>
           )}
         </div>

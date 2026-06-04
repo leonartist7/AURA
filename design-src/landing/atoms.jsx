@@ -277,6 +277,52 @@ function Reveal({ children, delay = 0, style, className = "", as: Tag = "div" })
   );
 }
 
+/* ───────────── Brand photo — warm-graded image slot with graceful fallback ─────────────
+   Renders a real photo with a consistent warm grade + grain + rounded mask so any
+   on-brand image drops in looking cohesive. If the file is missing it renders `fallback`
+   (often null), so nothing ever looks broken before assets land. */
+function BrandPhoto({ src, alt = "", fallback = null, radius = 16, grade = 0.22, eager = false, fill = false, style = {}, imgStyle = {}, children = null }) {
+  const [ok, setOk] = useState(true);
+  if (!ok) return fallback;
+  const wrap = fill
+    ? { position: "absolute", inset: 0, overflow: "hidden", ...style }
+    : { position: "relative", overflow: "hidden", borderRadius: radius, ...style };
+  return (
+    <div style={wrap}>
+      <img
+        src={src} alt={alt} onError={() => setOk(false)}
+        loading={eager ? "eager" : "lazy"} decoding="async"
+        // @ts-ignore
+        fetchpriority={eager ? "high" : "auto"}
+        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", ...imgStyle }}
+      />
+      {/* warm grade so cool/stocky shots still read on-brand */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none",
+        background: `linear-gradient(180deg, rgba(214,122,69,0.06), rgba(31,22,18,${grade}))`,
+        mixBlendMode: "multiply" }} />
+      <div className="grain" style={{ position: "absolute", inset: 0 }} />
+      {children && <div style={{ position: "absolute", inset: 0 }}>{children}</div>}
+    </div>
+  );
+}
+
+/* full-bleed photographic band, vanishes gracefully until the asset exists */
+function CafeBand() {
+  return (
+    <BrandPhoto src="/assets/brand/cafe-band.jpg" alt="A busy café counter in warm afternoon light"
+      fallback={null} grade={0.42} radius={0}
+      style={{ height: "clamp(300px, 44vh, 480px)" }}>
+      <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
+        <p className="serif-it" style={{ margin: 0, textAlign: "center", color: "var(--cream)", maxWidth: 760,
+          fontSize: "clamp(28px, 3.6vw, 52px)", lineHeight: 1.1, letterSpacing: "-0.01em",
+          textShadow: "0 2px 30px rgba(20,12,5,0.5)" }}>
+          The café they choose on purpose, not the app that happened to be open.
+        </p>
+      </div>
+    </BrandPhoto>
+  );
+}
+
 Object.assign(window, {
   useReveal, useParallax, GradientRibbons, WavyRibbons,
   NotifCard, Icon, GhostMarquee, TopNav, Logo, Reveal,

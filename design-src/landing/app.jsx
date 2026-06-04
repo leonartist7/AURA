@@ -162,6 +162,7 @@ function App() {
       <ProblemSection />
       <SolutionSection />
       <AppExperienceSection />
+      <CafeBand />
       <CozySpaceSection />
       <AISection />
       <GamificationSection />

@@ -297,6 +297,52 @@ function Reveal({ children, delay = 0, style, className = "", as: Tag = "div" })
   );
 }
 
+/* ───────────── Brand photo — warm-graded image slot with graceful fallback ─────────────
+   Renders a real photo with a consistent warm grade + grain + rounded mask so any
+   on-brand image drops in looking cohesive. If the file is missing it renders `fallback`
+   (often null), so nothing ever looks broken before assets land. */
+function BrandPhoto({ src, alt = "", fallback = null, radius = 16, grade = 0.22, eager = false, fill = false, style = {}, imgStyle = {}, children = null }) {
+  const [ok, setOk] = useState(true);
+  if (!ok) return fallback;
+  const wrap = fill
+    ? { position: "absolute", inset: 0, overflow: "hidden", ...style }
+    : { position: "relative", overflow: "hidden", borderRadius: radius, ...style };
+  return (
+    <div style={wrap}>
+      <img
+        src={src} alt={alt} onError={() => setOk(false)}
+        loading={eager ? "eager" : "lazy"} decoding="async"
+        // @ts-ignore
+        fetchpriority={eager ? "high" : "auto"}
+        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", ...imgStyle }}
+      />
+      {/* warm grade so cool/stocky shots still read on-brand */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none",
+        background: `linear-gradient(180deg, rgba(214,122,69,0.06), rgba(31,22,18,${grade}))`,
+        mixBlendMode: "multiply" }} />
+      <div className="grain" style={{ position: "absolute", inset: 0 }} />
+      {children && <div style={{ position: "absolute", inset: 0 }}>{children}</div>}
+    </div>
+  );
+}
+
+/* full-bleed photographic band, vanishes gracefully until the asset exists */
+function CafeBand() {
+  return (
+    <BrandPhoto src="/assets/brand/cafe-band.jpg" alt="A busy café counter in warm afternoon light"
+      fallback={null} grade={0.42} radius={0}
+      style={{ height: "clamp(300px, 44vh, 480px)" }}>
+      <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
+        <p className="serif-it" style={{ margin: 0, textAlign: "center", color: "var(--cream)", maxWidth: 760,
+          fontSize: "clamp(28px, 3.6vw, 52px)", lineHeight: 1.1, letterSpacing: "-0.01em",
+          textShadow: "0 2px 30px rgba(20,12,5,0.5)" }}>
+          The café they choose on purpose, not the app that happened to be open.
+        </p>
+      </div>
+    </BrandPhoto>
+  );
+}
+
 
 
 /* ===== phones ===== */
@@ -713,6 +759,15 @@ function ScreenStreak() {
 function HeroSection({ headline }) {
   return (
     <section id="top" className="section grain grain-soft" style={{ paddingTop: 180, paddingBottom: 60, background: "var(--cream)" }}>
+      {/* real café atmosphere, right-anchored + feathered into cream so the headline stays clean */}
+      <div className="hide-mobile" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
+        <BrandPhoto src="/assets/brand/hero-scene.jpg" alt="A warm, sunlit café interior" eager grade={0.1} fallback={null}
+          style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: "58%", borderRadius: 0, opacity: 0.85 }} />
+        <div style={{ position: "absolute", inset: 0,
+          background: "linear-gradient(90deg, var(--cream) 30%, rgba(243,234,215,0.55) 52%, transparent 78%)" }} />
+        <div style={{ position: "absolute", inset: 0,
+          background: "linear-gradient(0deg, var(--cream), transparent 22%, transparent 80%, var(--cream))" }} />
+      </div>
       {/* very subtle warm glow */}
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
         <div style={{
@@ -927,10 +982,10 @@ function SolutionSection() {
   const features = [
   { tag: "Loyalty", title: "Digital loyalty", copy: "Points, rewards, VIP tiers, birthdays, and repeat-visit bonuses, without paper cards.", accent: "var(--terra)", mock: <MockLoyalty /> },
   { tag: "AI", title: "AI promotions", copy: "Campaign ideas for slow hours, happy hours, and quiet customers, drafted and ready to launch.", accent: "var(--plum)", mock: <MockAIIdea /> },
-  { tag: "Ordering", title: "Direct ordering", copy: "QR menus and pickup ordering that help customers order directly from you, commission-free.", accent: "var(--saffron)", mock: <MockOrders /> },
+  { tag: "Ordering", title: "Direct ordering", copy: "QR menus and pickup ordering that help customers order directly from you, commission-free.", accent: "var(--saffron)", img: "/assets/brand/card-ordering.jpg", imgAlt: "A coffee and pastry on a café table with a phone QR menu" },
   { tag: "Game", title: "Gamified rewards", copy: "Spins, streaks, mystery perks, badges, and challenges that make loyalty feel alive.", accent: "var(--rose)", mock: <MockSpinTile /> },
-  { tag: "Data", title: "Customer database", copy: "Names, birthdays, favorite items, phone numbers, and visit history, owned by you.", accent: "var(--sage)", mock: <MockCustomers /> },
-  { tag: "Growth", title: "Social growth", copy: "Campaigns, content ideas, and local ads designed to turn attention into visits.", accent: "var(--honey)", mock: <MockSocial /> }];
+  { tag: "Data", title: "Customer database", copy: "Names, birthdays, favorite items, phone numbers, and visit history, owned by you.", accent: "var(--sage)", img: "/assets/brand/card-regulars.jpg", imgAlt: "A barista chatting with a regular over the counter" },
+  { tag: "Growth", title: "Social growth", copy: "Campaigns, content ideas, and local ads designed to turn attention into visits.", accent: "var(--honey)", img: "/assets/brand/card-social.jpg", imgAlt: "Overhead flat-lay of latte art being photographed for social" }];
 
 
   return (
@@ -971,7 +1026,12 @@ function SolutionSection() {
                 {f.title}
               </h3>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-soft)", marginTop: 10 }}>{f.copy}</p>
-              <div style={{ marginTop: "auto", paddingTop: 22 }}>{f.mock}</div>
+              <div style={{ marginTop: "auto", paddingTop: 22 }}>
+                {f.img
+                  ? <BrandPhoto src={f.img} alt={f.imgAlt} radius={12} grade={0.16} style={{ aspectRatio: "16 / 10" }}
+                      fallback={<div style={{ aspectRatio: "16 / 10", borderRadius: 12, background: "linear-gradient(135deg, rgba(214,122,69,0.1), rgba(141,107,141,0.08))", border: "1px solid rgba(42,31,24,0.06)" }} />} />
+                  : f.mock}
+              </div>
             </div>
           )}
         </div>
@@ -1523,6 +1583,10 @@ function CozySpaceSection() {
     >
       {/* sticky stage that pins through the cycle */}
       <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
+        {/* real night-café photo, sunk behind the candle gradients for cinematic depth */}
+        <BrandPhoto src="/assets/brand/cozy-night.jpg" alt="A dim café after closing, warm light" fill grade={0.55} fallback={null}
+          imgStyle={{ opacity: 0.5 }} />
+        <div style={{ position: "absolute", inset: 0, background: "var(--espresso)", opacity: 0.45, pointerEvents: "none" }} />
         {/* candle warmth */}
         <div style={{
           position: "absolute", inset: 0,
@@ -2592,6 +2656,7 @@ function App() {
       <ProblemSection />
       <SolutionSection />
       <AppExperienceSection />
+      <CafeBand />
       <CozySpaceSection />
       <AISection />
       <GamificationSection />
