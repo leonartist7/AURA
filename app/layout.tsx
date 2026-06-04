@@ -16,13 +16,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'AURA — Loyalty, ordering & marketing for cafés',
+  title: 'AURA: Loyalty, ordering & marketing for cafés',
   description:
     'AI-powered loyalty, marketing, and ordering systems for cafés and restaurants. Turn first-time visitors into regulars.',
   applicationName: 'Aura',
   authors: [{ name: 'Aura' }],
   openGraph: {
-    title: 'AURA — Loyalty, ordering & marketing for cafés',
+    title: 'AURA: Loyalty, ordering & marketing for cafés',
     description:
       'Turn first-time visitors into regulars. Book a free growth demo.',
     type: 'website',

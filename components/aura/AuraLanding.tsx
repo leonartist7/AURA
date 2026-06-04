@@ -17,7 +17,7 @@ const AURA_DEFAULTS = {
 };
 
 /* ===== atoms ===== */
-/* AURA atoms — backgrounds, ribbons, notifications, icons, primitives */
+/* AURA atoms, backgrounds, ribbons, notifications, icons, primitives */
 const { useState, useEffect, useRef, useMemo, useLayoutEffect } = React;
 
 /* ───────────── Hooks ───────────── */
@@ -117,7 +117,7 @@ function GradientRibbons({ variant = "warm", opacity = 1 }) {
   );
 }
 
-/* Animated wavy ribbon — silky strands flowing horizontally */
+/* Animated wavy ribbon, silky strands flowing horizontally */
 function WavyRibbons({ density = 4, opacity = 0.55, tint = "warm" }) {
   const colors = tint === "candle"
     ? ["#E8AC58", "#D67A45", "#7B4A3A"]
@@ -300,7 +300,7 @@ function Reveal({ children, delay = 0, style, className = "", as: Tag = "div" })
 
 
 /* ===== phones ===== */
-/* AURA phone screens — composable app UI for the mockups */
+/* AURA phone screens, composable app UI for the mockups */
 
 /* ───────────── Phone shell ───────────── */
 function Phone({ children, glow = true, scale = 1, style = {}, className = "" }) {
@@ -309,8 +309,7 @@ function Phone({ children, glow = true, scale = 1, style = {}, className = "" })
       className={`phone ${className}`}
       style={{
         transform: `scale(${scale})`,
-        transformOrigin: "top center",
-        ...style,
+        transformOrigin: "top center", ...style,
       }}
     >
       <div className="notch" />
@@ -626,7 +625,7 @@ function ScreenHappyHour() {
       }}>
         <div style={{ position: "absolute", right: -30, bottom: -30, width: 200, height: 200, borderRadius: "50%", background: "rgba(255,255,255,0.18)", filter: "blur(8px)" }} />
         <div style={{ position: "relative" }}>
-          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", opacity: 0.85 }}>−20% · 2 PM – 4 PM</div>
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", opacity: 0.85 }}>−20% · 2 PM - 4 PM</div>
           <div style={{ fontFamily: "var(--display)", fontSize: 38, fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1, marginTop: 50 }}>Cool down.</div>
           <div style={{ fontSize: 12, opacity: 0.85, marginTop: 6 }}>Iced drinks · 12oz & up</div>
         </div>
@@ -708,7 +707,7 @@ function ScreenStreak() {
 
 
 /* ===== sections-a ===== */
-/* AURA sections A — Hero, Problem (sticky pin), Solution */
+/* AURA sections A, Hero, Problem (sticky pin), Solution */
 
 /* ───────────── HERO ───────────── */
 function HeroSection({ headline }) {
@@ -732,9 +731,9 @@ function HeroSection({ headline }) {
 
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
         <div className="r-hero" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 60, alignItems: "center", minHeight: "calc(100vh - 280px)" }}>
-          {/* LEFT — copy */}
+          {/* LEFT, copy */}
           <div>
-            <div className="eyebrow"><span className="dot" /> AI loyalty, ordering & marketing for cafés & restaurants</div>
+            <div className="eyebrow">AI loyalty, ordering & marketing for cafés & restaurants</div>
 
             <h1 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(46px, 6vw, 84px)", letterSpacing: "-0.04em", lineHeight: 1.0 }}>
               Turn first-time visitors<br />
@@ -745,25 +744,17 @@ function HeroSection({ headline }) {
               Create a quiet ritual they come back for.
             </p>
 
-            <p style={{ marginTop: 22, maxWidth: 520, fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)" }}>
-              Aura gives your café or restaurant a branded loyalty system, smart promotions, direct ordering, and gamified rewards that bring customers back — without depending only on delivery apps or social media.
+            <p style={{ marginTop: 22, maxWidth: 480, fontSize: 17, lineHeight: 1.55, color: "var(--ink-soft)" }}>
+              A branded loyalty system, smart promotions, and direct ordering that turn first-time visits into regular ones.
             </p>
 
             <div style={{ marginTop: 32, display: "flex", gap: 12, flexWrap: "wrap" }}>
               <a href="#cta" className="btn-primary">Book a free growth demo <span className="arrow-circle">→</span></a>
               <a href="#app" className="btn-secondary">See the experience</a>
             </div>
-
-            <div style={{ marginTop: 36, display: "flex", gap: 18, flexWrap: "wrap", alignItems: "center", color: "var(--muted)", fontSize: 12, fontFamily: "var(--mono)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><Icon.bolt style={{ color: "var(--terra)", width: 13, height: 13 }} /> Launch in 14 days</span>
-              <span style={{ width: 3, height: 3, background: "var(--muted)", borderRadius: "50%" }} />
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><Icon.heart style={{ color: "var(--rose)", width: 13, height: 13 }} /> No delivery commissions</span>
-              <span style={{ width: 3, height: 3, background: "var(--muted)", borderRadius: "50%" }} />
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><Icon.crown style={{ color: "var(--plum)", width: 13, height: 13 }} /> 5 Founder Partner spots</span>
-            </div>
           </div>
 
-          {/* RIGHT — phone + 3 carefully placed notifs (not a cluttered cluster) */}
+          {/* RIGHT, phone + 3 carefully placed notifs (not a cluttered cluster) */}
           <div style={{ position: "relative", height: 680, pointerEvents: "none" }}>
             <div style={{
               position: "absolute", left: "50%", top: 0, transform: "translateX(-50%)",
@@ -787,12 +778,12 @@ function HeroSection({ headline }) {
               <NotifCard icon={<Icon.crown />} accent="var(--plum)" label="VIP unlocked" sub="Maya R. · Gold tier" />
             </div>
             <div className="hide-mobile" style={{ position: "absolute", top: 500, right: -10, animation: "float-y 7s ease-in-out infinite -3s" }}>
-              <NotifCard icon={<Icon.fire />} accent="var(--rose)" label="Happy hour live" sub="2 – 4 PM" />
+              <NotifCard icon={<Icon.fire />} accent="var(--rose)" label="Happy hour live" sub="2-4 PM" />
             </div>
           </div>
         </div>
 
-        {/* trust strip — no fake names */}
+        {/* trust strip, no fake names */}
         <div style={{ marginTop: 80, paddingTop: 28, borderTop: "1px solid var(--hairline)", display: "flex", justifyContent: "space-between", gap: 32, flexWrap: "wrap", alignItems: "center" }}>
           <span style={{ color: "var(--muted)", fontSize: 11, fontFamily: "var(--mono)", letterSpacing: "0.16em", textTransform: "uppercase" }}>Built for independent cafés & restaurants</span>
           <span className="serif-it" style={{ color: "var(--ink)", opacity: 0.7, fontSize: 18, letterSpacing: "-0.01em" }}>
@@ -804,13 +795,13 @@ function HeroSection({ headline }) {
 
 }
 
-/* ───────────── PROBLEM — sticky pinned, leak viz, rotating pain text ───────────── */
+/* ───────────── PROBLEM, sticky pinned, leak viz, rotating pain text ───────────── */
 function ProblemSection() {
   const pains = [
-  { i: <Icon.chart />, t: "Delivery platforms take 15–30% of every order.", s: "Every order through someone else's app shrinks your margin." },
+  { i: <Icon.chart />, t: "Delivery platforms take 15-30% of every order.", s: "Every order through someone else's app shrinks your margin." },
   { i: <Icon.globe />, t: "Social media decides who sees you.", s: "Reach you earned in months can vanish overnight." },
   { i: <Icon.rotate />, t: "A great first visit isn't enough.", s: "Most customers come once and forget you exist." },
-  { i: <Icon.spark />, t: "Promotions are guesswork.", s: "Posters, last-minute posts, hopeful discounts — no system, no learning." },
+  { i: <Icon.spark />, t: "Promotions are guesswork.", s: "Posters, last-minute posts, hopeful discounts, no system, no learning." },
   { i: <Icon.bookmark />, t: "Punch cards belong to a different decade.", s: "Paper, stickers, lost wallets. Customers want progress." },
   { i: <Icon.users />, t: "You don't own the customer relationship.", s: "No emails, no phone numbers, no way to reach them on your terms." }];
 
@@ -820,9 +811,9 @@ function ProblemSection() {
       <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
         <div className="container" style={{ position: "relative", zIndex: 3 }}>
           <div className="r-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-            {/* LEFT — the framing */}
+            {/* LEFT, the framing */}
             <div>
-              <div className="eyebrow"><span className="dot" /> The real problem</div>
+              <div className="eyebrow">The real problem</div>
               <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.6vw, 64px)", letterSpacing: "-0.035em", lineHeight: 1.0, color: "var(--ink)" }}>
                 Most restaurants don't have a customer problem.
               </h2>
@@ -830,13 +821,13 @@ function ProblemSection() {
                 They have a retention problem.
               </h3>
               <p style={{ marginTop: 28, maxWidth: 480, fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)" }}>
-                People visit once, order once, follow once — then disappear. Delivery apps take the margin. Social platforms hide your posts. Punch cards get lost. Aura helps you build a system that remembers customers and brings them back.
+                People visit once, order once, follow once, then disappear. Delivery apps take the margin. Social platforms hide your posts. Punch cards get lost. Aura helps you build a system that remembers customers and brings them back.
               </p>
               <p style={{ marginTop: 20, padding: "14px 18px", borderRadius: 12, background: "rgba(214,122,69,0.1)", border: "1px solid rgba(214,122,69,0.28)", maxWidth: 480, fontSize: 15, lineHeight: 1.5, color: "var(--ink)", fontWeight: 500 }}>
                 <span className="serif-it" style={{ fontSize: 17, color: "var(--terra)" }}>If customers don't return,</span> every new sale becomes expensive.
               </p>
 
-              {/* margin-flow visualization — literal & labeled */}
+              {/* margin-flow visualization, literal & labeled */}
               <div data-comment-anchor="30797eb741-svg-130-17" style={{ marginTop: 36, padding: "20px 22px", borderRadius: 14, background: "rgba(255,255,255,0.4)", border: "1px solid var(--hairline)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: "var(--mono)", fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)" }}>
                   <span>Out of every $100 a customer spends</span>
@@ -856,7 +847,7 @@ function ProblemSection() {
                       <span style={{ width: 8, height: 8, borderRadius: 2, background: "rgba(214,122,69,0.6)" }} />
                       <strong style={{ color: "var(--ink)", fontWeight: 600 }}>Delivery apps</strong>
                     </div>
-                    <div style={{ color: "var(--muted)", marginTop: 2 }}>15–30% commission per order</div>
+                    <div style={{ color: "var(--muted)", marginTop: 2 }}>15-30% commission per order</div>
                   </div>
                   <div>
                     <div style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--ink-soft)" }}>
@@ -883,7 +874,7 @@ function ProblemSection() {
               </div>
             </div>
 
-            {/* RIGHT — rotating pain cards (controlled by scroll) */}
+            {/* RIGHT, rotating pain cards (controlled by scroll) */}
             <div data-pain-stack style={{ position: "relative", height: 460 }}>
               {/* index marker */}
               <div data-pain-idx-wrap style={{ position: "absolute", top: 0, right: 0, fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.14em", color: "var(--muted)" }}>
@@ -902,8 +893,8 @@ function ProblemSection() {
               }}>
                   <div style={{
                   width: 56, height: 56, borderRadius: 16,
-                  background: "rgba(255,255,255,0.55)",
-                  border: "1px solid rgba(255,255,255,0.85)",
+                  background: "rgba(252,247,236,0.92)",
+                  border: "1px solid rgba(42,31,24,0.08)",
                   backdropFilter: "blur(16px)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   color: "var(--terra)"
@@ -934,11 +925,11 @@ function ProblemSection() {
 /* ───────────── SOLUTION ───────────── */
 function SolutionSection() {
   const features = [
-  { tag: "Loyalty", title: "Digital loyalty", copy: "Points, rewards, VIP tiers, birthdays, and repeat-visit bonuses — without paper cards.", accent: "var(--terra)", mock: <MockLoyalty /> },
-  { tag: "AI", title: "AI promotions", copy: "Campaign ideas for slow hours, happy hours, and quiet customers — drafted and ready to launch.", accent: "var(--plum)", mock: <MockAIIdea /> },
+  { tag: "Loyalty", title: "Digital loyalty", copy: "Points, rewards, VIP tiers, birthdays, and repeat-visit bonuses, without paper cards.", accent: "var(--terra)", mock: <MockLoyalty /> },
+  { tag: "AI", title: "AI promotions", copy: "Campaign ideas for slow hours, happy hours, and quiet customers, drafted and ready to launch.", accent: "var(--plum)", mock: <MockAIIdea /> },
   { tag: "Ordering", title: "Direct ordering", copy: "QR menus and pickup ordering that help customers order directly from you, commission-free.", accent: "var(--saffron)", mock: <MockOrders /> },
   { tag: "Game", title: "Gamified rewards", copy: "Spins, streaks, mystery perks, badges, and challenges that make loyalty feel alive.", accent: "var(--rose)", mock: <MockSpinTile /> },
-  { tag: "Data", title: "Customer database", copy: "Names, birthdays, favorite items, phone numbers, and visit history — owned by you.", accent: "var(--sage)", mock: <MockCustomers /> },
+  { tag: "Data", title: "Customer database", copy: "Names, birthdays, favorite items, phone numbers, and visit history, owned by you.", accent: "var(--sage)", mock: <MockCustomers /> },
   { tag: "Growth", title: "Social growth", copy: "Campaigns, content ideas, and local ads designed to turn attention into visits.", accent: "var(--honey)", mock: <MockSocial /> }];
 
 
@@ -947,7 +938,6 @@ function SolutionSection() {
       <div className="container">
         <div className="r-2 r-end" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "end", marginBottom: 80 }}>
           <div>
-            <div className="eyebrow"><span className="dot" /> Your engine</div>
             <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 62px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
               Everything you need<br />
               to <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>bring customers back.</span>
@@ -963,10 +953,10 @@ function SolutionSection() {
           <div key={i} className="card-hover" style={{
             position: "relative",
             padding: 26,
-            borderRadius: 22,
-            background: "rgba(255,255,255,0.6)",
+            borderRadius: 16,
+            background: "rgba(252,247,236,0.94)",
             backdropFilter: "blur(14px)",
-            border: "1px solid rgba(255,255,255,0.85)",
+            border: "1px solid rgba(42,31,24,0.08)",
             boxShadow: "0 30px 60px -40px rgba(42,31,24,0.18)",
             overflow: "hidden",
             minHeight: 360,
@@ -978,7 +968,7 @@ function SolutionSection() {
                 background: f.accent,
                 boxShadow: `0 0 18px ${f.accent}`
               }} />
-                <span className="mono" style={{ color: "var(--muted)" }}>{String(i + 1).padStart(2, "0")} · {f.tag}</span>
+                <span className="mono" style={{ color: "var(--muted)" }}>{f.tag}</span>
               </div>
               <h3 style={{ fontFamily: "var(--display)", fontSize: 24, fontWeight: 600, letterSpacing: "-0.025em", marginTop: 30, lineHeight: 1.1 }}>
                 {f.title}
@@ -993,7 +983,7 @@ function SolutionSection() {
 
 }
 
-/* ───────── solution mocks — warm-only ───────── */
+/* ───────── solution mocks, warm-only ───────── */
 function MockLoyalty() {
   return (
     <div style={{ padding: 14, borderRadius: 14, background: "linear-gradient(135deg, rgba(214,122,69,0.12), rgba(220,139,126,0.08))", border: "1px solid rgba(42,31,24,0.06)" }}>
@@ -1017,7 +1007,7 @@ function MockAIIdea() {
         <div style={{ width: 20, height: 20, borderRadius: 6, background: "linear-gradient(135deg,var(--plum),var(--terra))", display: "flex", alignItems: "center", justifyContent: "center" }}><Icon.spark style={{ width: 11, height: 11 }} /></div>
         <span style={{ fontFamily: "var(--mono)", fontSize: 9.5, opacity: 0.6, letterSpacing: "0.14em", textTransform: "uppercase" }}>Aura suggests</span>
       </div>
-      <div style={{ fontSize: 13, lineHeight: 1.45, marginTop: 8 }}>"Tuesday 2–5 PM is slow. 20% iced latte happy hour to customers within 3 km?"</div>
+      <div style={{ fontSize: 13, lineHeight: 1.45, marginTop: 8 }}>"Tuesday 2-5 PM is slow. 20% iced latte happy hour to customers within 3 km?"</div>
       <div style={{ display: "flex", gap: 6, marginTop: 10 }}>
         <span style={{ padding: "4px 9px", borderRadius: 999, background: "var(--cream)", color: "var(--ink)", fontSize: 11, fontWeight: 600 }}>Approve</span>
         <span style={{ padding: "4px 9px", borderRadius: 999, border: "1px solid rgba(243,234,215,0.18)", color: "var(--cream)", fontSize: 11 }}>Edit</span>
@@ -1111,9 +1101,9 @@ function MockSocial() {
 
 
 /* ===== sections-b ===== */
-/* AURA sections B — App Experience (curtain lift), AI (warm panel), Gamification (calmer) */
+/* AURA sections B, App Experience (curtain lift), AI (warm panel), Gamification (calmer) */
 
-/* ───────────── APP EXPERIENCE — curtain lift over Solution ───────────── */
+/* ───────────── APP EXPERIENCE, curtain lift over Solution ───────────── */
 function AppExperienceSection() {
   return (
     <section
@@ -1133,19 +1123,18 @@ function AppExperienceSection() {
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
         <div className="r-2 r-end" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "end", marginBottom: 48 }}>
           <div>
-            <div className="eyebrow"><span className="dot" /> The customer app</div>
             <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 60px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
               Make every visit feel like<br />
               <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>progress.</span>
             </h2>
           </div>
           <p className="r-right" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: 440, marginLeft: "auto" }}>
-            A customer-facing app that turns coffee into a quiet ritual — points you can feel, perks you can see, rewards worth coming back for.
+            A customer-facing app that turns coffee into a quiet ritual, points you can feel, perks you can see, rewards worth coming back for.
           </p>
         </div>
 
         {/* Visit → Earn → Return loop strip */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28, padding: "22px 32px", borderRadius: 999, background: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.85)", boxShadow: "0 14px 30px -22px rgba(42,31,24,0.18)", marginBottom: 80, maxWidth: 720, marginInline: "auto" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28, padding: "22px 32px", borderRadius: 999, background: "rgba(252,247,236,0.92)", border: "1px solid rgba(42,31,24,0.08)", boxShadow: "0 14px 30px -22px rgba(42,31,24,0.18)", marginBottom: 80, maxWidth: 720, marginInline: "auto" }}>
           {["Visit", "Earn", "Return"].map((step, i) => (
             <React.Fragment key={step}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -1164,10 +1153,10 @@ function AppExperienceSection() {
           gap: 28,
           alignItems: "start",
         }}>
-          <PhoneCard quote="Rewards Wallet — customers see how close they are to the next perk." screen={<ScreenHome />} offset={0} />
-          <PhoneCard quote="Mystery Spin — surprise rewards create excitement after visits." screen={<ScreenSpin />} offset={40} />
-          <PhoneCard quote="Happy Hour Offers — promote slow hours with targeted discounts." screen={<ScreenHappyHour />} offset={0} />
-          <PhoneCard quote="Ritual Streak — motivate customers to return more often." screen={<ScreenStreak />} offset={40} />
+          <PhoneCard quote="Rewards Wallet, customers see how close they are to the next perk." screen={<ScreenHome />} offset={0} />
+          <PhoneCard quote="Mystery Spin, surprise rewards create excitement after visits." screen={<ScreenSpin />} offset={40} />
+          <PhoneCard quote="Happy Hour Offers, promote slow hours with targeted discounts." screen={<ScreenHappyHour />} offset={0} />
+          <PhoneCard quote="Ritual Streak, motivate customers to return more often." screen={<ScreenStreak />} offset={40} />
         </div>
 
         <div style={{ marginTop: 96, paddingTop: 36, borderTop: "1px solid var(--hairline)" }}>
@@ -1211,7 +1200,7 @@ function PhoneCard({ screen, quote, offset = 0 }) {
   );
 }
 
-/* ───────────── AI — warm cream now, calm authority ───────────── */
+/* ───────────── AI, warm cream now, calm authority ───────────── */
 function AISection() {
   return (
     <section className="section grain grain-soft" id="ai" style={{ background: "var(--cream-warm)" }}>
@@ -1222,7 +1211,6 @@ function AISection() {
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
         <div className="r-split" style={{ display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 80, alignItems: "start" }}>
           <div>
-            <div className="eyebrow"><span className="dot" /> AI growth assistant</div>
             <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(34px, 4.2vw, 58px)", letterSpacing: "-0.035em", lineHeight: 1.02 }}>
               Your AI growth assistant for slow hours,<br />
               <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>quiet customers,</span> and better timing.
@@ -1231,7 +1219,7 @@ function AISection() {
               Marketing that doesn’t wait for inspiration.
             </p>
             <p style={{ marginTop: 18, maxWidth: 500, fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)" }}>
-              Aura watches your hours, your menu, and your customer rhythms — then drafts the next campaign before you have to think of it. <strong style={{ color: "var(--ink)", fontWeight: 600 }}>Approve campaigns in one click</strong> instead of guessing what to post next.
+              Aura watches your hours, your menu, and your customer rhythms, then drafts the next campaign before you have to think of it. <strong style={{ color: "var(--ink)", fontWeight: 600 }}>Approve campaigns in one click</strong> instead of guessing what to post next.
             </p>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 40 }}>
@@ -1246,8 +1234,8 @@ function AISection() {
                 <div key={f} style={{
                   display: "flex", alignItems: "center", gap: 10,
                   padding: "12px 14px",
-                  background: "rgba(255,255,255,0.55)",
-                  border: "1px solid rgba(255,255,255,0.85)",
+                  background: "rgba(252,247,236,0.92)",
+                  border: "1px solid rgba(42,31,24,0.08)",
                   borderRadius: 12,
                   fontSize: 13.5,
                   color: "var(--ink)",
@@ -1258,12 +1246,12 @@ function AISection() {
             </div>
           </div>
 
-          {/* AI conversation panel — on warm */}
+          {/* AI conversation panel, on warm */}
           <div className="r-unstick" style={{ position: "sticky", top: 100 }}>
             <div style={{
               position: "relative",
               padding: 26,
-              borderRadius: 24,
+              borderRadius: 18,
               background: "rgba(255,255,255,0.5)",
               border: "1px solid rgba(255,255,255,0.9)",
               backdropFilter: "blur(20px)",
@@ -1286,7 +1274,7 @@ function AISection() {
 
               <div style={{ padding: 14, borderRadius: 12, background: "rgba(42,31,24,0.04)", fontSize: 13, color: "var(--ink-soft)", marginBottom: 14, border: "1px solid var(--hairline)" }}>
                 <span style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)" }}>Context</span>
-                <div style={{ marginTop: 4 }}>Café Mira · Tue 2–5 PM averages 38% below daily peak. 142 customers haven't visited in 14+ days.</div>
+                <div style={{ marginTop: 4 }}>Café Mira · Tue 2-5 PM averages 38% below daily peak. 142 customers haven't visited in 14+ days.</div>
               </div>
 
               <div style={{ padding: 20, borderRadius: 16, background: "linear-gradient(135deg, rgba(214,122,69,0.18), rgba(229,177,74,0.14))", border: "1px solid rgba(214,122,69,0.3)", color: "var(--ink)" }}>
@@ -1294,11 +1282,11 @@ function AISection() {
                   <Icon.bolt style={{ width: 12, height: 12, color: "var(--terra)" }} /> Recommended
                 </div>
                 <div style={{ fontFamily: "var(--display)", fontSize: 22, fontWeight: 600, letterSpacing: "-0.025em", marginTop: 10, lineHeight: 1.2 }}>
-                  Tuesday 2–5 PM is usually slow. Launch a 20% iced latte happy hour to customers within 3 km?
+                  Tuesday 2-5 PM is usually slow. Launch a 20% iced latte happy hour to customers within 3 km?
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginTop: 16, fontSize: 11.5 }}>
                   <Stat label="Audience"      v="412" />
-                  <Stat label="Est. orders"   v="38–52" />
+                  <Stat label="Est. orders"   v="38-52" />
                   <Stat label="Margin impact" v="+$340" />
                 </div>
                 <div style={{ display: "flex", gap: 8, marginTop: 18 }}>
@@ -1342,7 +1330,7 @@ function MiniSuggestion({ icon, tint, title, sub }) {
   );
 }
 
-/* ───────────── GAMIFICATION — calmer, more premium ───────────── */
+/* ───────────── GAMIFICATION, calmer, more premium ───────────── */
 function GamificationSection() {
   return (
     <section className="section grain grain-soft" id="game" style={{ background: "var(--clay)", overflow: "hidden" }}>
@@ -1353,18 +1341,17 @@ function GamificationSection() {
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
         <div className="r-2 r-end" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "end", marginBottom: 80 }}>
           <div>
-            <div className="eyebrow"><span className="dot" /> Gamification</div>
             <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 64px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
               Loyalty should feel<br/>
               <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>like a small celebration.</span>
             </h2>
           </div>
           <p className="r-right" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: 460, marginLeft: "auto" }}>
-            Not a paper card. Customers unlock progress, status, surprises — quiet reasons to come back that don't shout.
+            Not a paper card. Customers unlock progress, status, surprises, quiet reasons to come back that don't shout.
           </p>
         </div>
 
-        {/* 3 explainer cards — Progress / Surprise / Status */}
+        {/* 3 explainer cards, Progress / Surprise / Status */}
         <div className="r-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18, marginBottom: 60 }}>
           {[
   { t: "Progress", c: "Customers see how close they are to the next reward.", i: <Icon.trend />, color: "var(--terra)" },
@@ -1373,9 +1360,9 @@ function GamificationSection() {
             <div key={x.t} className="card-hover" style={{
   padding: 22,
   borderRadius: 18,
-  background: "rgba(255,255,255,0.55)",
+  background: "rgba(252,247,236,0.92)",
   backdropFilter: "blur(14px)",
-  border: "1px solid rgba(255,255,255,0.8)",
+  border: "1px solid rgba(42,31,24,0.08)",
   boxShadow: "0 14px 30px -22px rgba(42,31,24,0.16)"
 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -1410,21 +1397,21 @@ function GamificationSection() {
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <GameTile icon={<Icon.gift />}  label="Mystery drop"  value="3"    sub="left today · spin"    accent="var(--rose)" />
             <GameTile icon={<Icon.users />} label="Referral"      value="2 / 5" sub="bring a friend"       accent="var(--sage)" dark />
-            <GameTile icon={<Icon.bolt />}  label="Happy hour"    value="−20%" sub="Tue · 2 – 4 PM"       accent="var(--honey)" />
+            <GameTile icon={<Icon.bolt />}  label="Happy hour"    value="−20%" sub="Tue · 2-4 PM"       accent="var(--honey)" />
           </div>
         </div>
 
         <div style={{ marginTop: 80, paddingTop: 36, borderTop: "1px solid var(--hairline)" }}>
-          <div className="eyebrow" style={{ marginBottom: 18 }}>Badges · custom profiles · referrals · seasonal challenges</div>
+          <div className="eyebrow" style={{ marginBottom: 18 }}>Badges, custom profiles, referrals & seasonal challenges</div>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             {[
   { l: "First sip", c: "var(--terra)" },
   { l: "5-day streak", c: "var(--rose)" },
   { l: "Gold tier", c: "var(--saffron)" },
   { l: "Custom cup", c: "var(--plum)" },
-  { l: "Bring a friend — referral challenge", c: "var(--sage)" },
+  { l: "Bring a friend, referral challenge", c: "var(--sage)" },
   { l: "Morning regular", c: "var(--honey)" },
-  { l: "Seasonal — Spring blend", c: "var(--terra)" },
+  { l: "Seasonal, Spring blend", c: "var(--terra)" },
   { l: "Mystery hunter", c: "var(--rose)" }].map((b) => (
               <div key={b.l} style={{
                 display: "flex", alignItems: "center", gap: 9,
@@ -1451,9 +1438,9 @@ function GameTile({ icon, label, value, sub, accent, dark = false }) {
     <div style={{
       padding: 22,
       borderRadius: 20,
-      background: dark ? "var(--ink)" : "rgba(255,255,255,0.55)",
+      background: dark ? "var(--ink)" : "rgba(252,247,236,0.92)",
       backdropFilter: "blur(16px)",
-      border: dark ? "1px solid rgba(255,255,255,0.06)" : "1px solid rgba(255,255,255,0.8)",
+      border: dark ? "1px solid rgba(255,255,255,0.06)" : "1px solid rgba(42,31,24,0.08)",
       boxShadow: "0 20px 50px -30px rgba(42,31,24,0.3)",
       color: dark ? "var(--cream)" : "var(--ink)",
     }}>
@@ -1528,7 +1515,7 @@ function PointBurst({ pos, text, color, delay = 0 }) {
 
 
 /* ===== sections-cozy ===== */
-/* AURA — "After hours" cozy digital space — pinned cinematic cycle.
+/* AURA, "After hours" cozy digital space, pinned cinematic cycle.
    3 storyteller moments anchor the relationship the product creates. */
 
 function CozySpaceSection() {
@@ -1540,7 +1527,7 @@ function CozySpaceSection() {
         position: "relative",
         background: "var(--espresso)",
         color: "var(--cream)",
-        minHeight: "220vh",  // 3 storyteller moments, ~73vh each — cinematic without bloat
+        minHeight: "220vh",  // 3 storyteller moments, ~73vh each, cinematic without bloat
       }}
     >
       {/* sticky stage that pins through the cycle */}
@@ -1566,7 +1553,7 @@ function CozySpaceSection() {
 
         <div className="container" style={{ position: "relative", zIndex: 3, height: "100%" }}>
           <div className="r-hero" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 60, alignItems: "center", height: "100%" }}>
-            {/* LEFT — cycling copy */}
+            {/* LEFT, cycling copy */}
             <div data-cozy-stack style={{ position: "relative", height: 420 }}>
               <div className="eyebrow" style={{ color: "rgba(243,234,215,0.65)" }}>
                 <span className="dot" style={{ background: "var(--saffron)", boxShadow: "0 0 10px var(--saffron)" }} /> After hours
@@ -1577,7 +1564,7 @@ function CozySpaceSection() {
                   k: "01",
                   small: "The lights are off in the café.",
                   big: <>Even after they leave,<br /><span className="serif-it" style={{ color: "var(--saffron)" }}>your café stays with them.</span></>,
-                  body: "When the espresso machine cools down, Aura keeps your brand in their pocket — a quiet, branded space your regulars carry home.",
+                  body: "When the espresso machine cools down, Aura keeps your brand in their pocket, a quiet, branded space your regulars carry home.",
                 },
                 {
                   k: "02",
@@ -1612,7 +1599,7 @@ function CozySpaceSection() {
                 </div>
               ))}
 
-              {/* progress dots — bottom of left col */}
+              {/* progress dots, bottom of left col */}
               <div data-cozy-dots style={{ position: "absolute", bottom: 0, left: 0, display: "flex", gap: 6 }}>
                 {[0, 1, 2].map((i) => (
                   <span key={i} data-cozy-dot data-idx={i} style={{
@@ -1624,7 +1611,7 @@ function CozySpaceSection() {
               </div>
             </div>
 
-            {/* RIGHT — phone in spotlight */}
+            {/* RIGHT, phone in spotlight */}
             <div style={{ position: "relative", height: 640, display: "flex", justifyContent: "center", alignItems: "center" }}>
               <div style={{
                 position: "absolute", inset: 0,
@@ -1688,9 +1675,9 @@ function CozySpaceSection() {
 
 
 /* ===== sections-c ===== */
-/* AURA sections C — Dashboard (warm sand), Social, Pricing, Final CTA (warm), Footer (espresso) */
+/* AURA sections C, Dashboard (warm sand), Social, Pricing, Final CTA (warm), Footer (espresso) */
 
-/* ───────────── DASHBOARD — warm sand, NOT dark ───────────── */
+/* ───────────── DASHBOARD, warm sand, NOT dark ───────────── */
 function DashboardSection() {
   return (
     <section className="section grain grain-soft" id="dashboard" style={{ background: "var(--sand)" }}>
@@ -1701,7 +1688,6 @@ function DashboardSection() {
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
         <div className="r-2 r-end" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "end", marginBottom: 56 }}>
           <div>
-            <div className="eyebrow"><span className="dot" /> The dashboard</div>
             <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 60px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
               Simple control.<br/>
               <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>Real</span> growth signals.
@@ -1712,7 +1698,7 @@ function DashboardSection() {
           </p>
         </div>
 
-        {/* Dashboard mockup — espresso surface on warm sand bg (single accent surface, doesn't break flow) */}
+        {/* Dashboard mockup, espresso surface on warm sand bg (single accent surface, doesn't break flow) */}
         <div style={{
           position: "relative",
           padding: 24,
@@ -1876,18 +1862,17 @@ function SocialGrowthSection() {
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
         <div className="r-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
           <div className="r-unstick" style={{ position: "sticky", top: 110 }}>
-            <div className="eyebrow"><span className="dot" /> Beyond software</div>
             <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 60px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
               Turn attention<br/>
               into <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>repeat visits.</span>
             </h2>
             <p style={{ marginTop: 26, fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: 460 }}>
-              Aura connects your loyalty system with content, ads, reviews, and local promotions — so online attention becomes real customers walking back in.
+              Aura connects your loyalty system with content, ads, reviews, and local promotions, so online attention becomes real customers walking back in.
             </p>
             <div style={{ marginTop: 28, padding: 18, borderRadius: 14, background: "rgba(255,255,255,0.5)", border: "1px solid var(--hairline)", fontSize: 13.5, lineHeight: 1.5, color: "var(--ink)" }}>
               <span className="mono" style={{ color: "var(--muted)" }}>How we talk about reach</span>
               <div className="serif-it" style={{ fontSize: 18, marginTop: 8, letterSpacing: "-0.01em" }}>
-                "Growth campaigns designed to increase local visibility, engagement, and follower growth — based on ad budget, market, and content performance."
+                "Growth campaigns designed to increase local visibility, engagement, and follower growth, based on ad budget, market, and content performance."
               </div>
             </div>
           </div>
@@ -1905,9 +1890,9 @@ function SocialGrowthSection() {
                 display: "flex", gap: 16, alignItems: "center",
                 padding: "18px 20px",
                 borderRadius: 16,
-                background: "rgba(255,255,255,0.55)",
+                background: "rgba(252,247,236,0.92)",
                 backdropFilter: "blur(14px)",
-                border: "1px solid rgba(255,255,255,0.85)",
+                border: "1px solid rgba(42,31,24,0.08)",
                 boxShadow: "0 14px 30px -22px rgba(42,31,24,0.16)",
               }}>
                 <div style={{ width: 40, height: 40, borderRadius: 11, background: c.c, color: "white", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{c.i}</div>
@@ -1915,7 +1900,6 @@ function SocialGrowthSection() {
                   <div style={{ fontFamily: "var(--display)", fontWeight: 600, fontSize: 17, letterSpacing: "-0.02em" }}>{c.t}</div>
                   <div style={{ fontSize: 13.5, color: "var(--ink-soft)", marginTop: 2, lineHeight: 1.45 }}>{c.s}</div>
                 </div>
-                <div style={{ color: "var(--muted)", fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.12em" }}>0{i + 1}</div>
               </div>
             ))}
           </div>
@@ -1952,7 +1936,7 @@ function PricingSection() {
     <section className="section grain grain-soft" id="pricing" style={{ background: "var(--cream-warm)" }}>
       <div className="container" style={{ position: "relative" }}>
         <div style={{ textAlign: "center", maxWidth: 720, margin: "0 auto" }}>
-          <div className="eyebrow" style={{ justifyContent: "center" }}><span className="dot" /> Pricing</div>
+          <div className="eyebrow" style={{ justifyContent: "center" }}>Pricing</div>
           <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 60px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
             <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>Founder Partner</span> Plans
           </h2>
@@ -1998,11 +1982,11 @@ function PlanCard({ p }) {
     <div className="card-hover" style={{
       position: "relative",
       padding: 28,
-      borderRadius: 22,
-      background: p.featured ? "linear-gradient(160deg, var(--ink) 0%, #3A2A1F 100%)" : "rgba(255,255,255,0.6)",
+      borderRadius: 16,
+      background: p.featured ? "linear-gradient(160deg, var(--ink) 0%, #3A2A1F 100%)" : "rgba(252,247,236,0.94)",
       backdropFilter: "blur(14px)",
       color: p.featured ? "var(--cream)" : "var(--ink)",
-      border: p.featured ? "1px solid rgba(243,234,215,0.18)" : "1px solid rgba(255,255,255,0.85)",
+      border: p.featured ? "1px solid rgba(243,234,215,0.18)" : "1px solid rgba(42,31,24,0.08)",
       boxShadow: p.featured
         ? "0 40px 80px -30px rgba(214,122,69,0.3), 0 20px 40px -20px rgba(42,31,24,0.4)"
         : "0 20px 50px -30px rgba(42,31,24,0.16)",
@@ -2048,23 +2032,22 @@ function PlanCard({ p }) {
   );
 }
 
-/* ───────────── FINAL CTA — warm sunset, NO dark slam ───────────── */
+/* ───────────── FINAL CTA, warm sunset, NO dark slam ───────────── */
 function FinalCTASection() {
   return (
     <section className="section grain grain-soft" id="cta" style={{ background: "var(--clay)", overflow: "hidden", padding: "160px 0 140px" }}>
       <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
         <GradientRibbons variant="dusk" opacity={0.85} />
       </div>
-      {/* very soft single ghost word, low opacity, behind — toned down so it doesn't compete with the headline */}
+      {/* very soft single ghost word, low opacity, behind, toned down so it doesn't compete with the headline */}
       <div className="hide-mobile" style={{ position: "absolute", left: 0, right: 0, top: "50%", transform: "translateY(-50%)", zIndex: 1, opacity: 0.16, pointerEvents: "none", textAlign: "center" }}>
         <span className="serif-it" style={{ fontSize: "clamp(160px, 26vw, 380px)", color: "rgba(42,31,24,0.1)", letterSpacing: "-0.03em" }}>regulars</span>
       </div>
 
       <div className="container" style={{ position: "relative", zIndex: 3, textAlign: "center" }}>
-        <div className="eyebrow" style={{ justifyContent: "center" }}><span className="dot" /> Founder partners · 5 of 5 spots</div>
         <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(44px, 6vw, 84px)", letterSpacing: "-0.04em", lineHeight: 0.98, maxWidth: 1000, marginInline: "auto" }}>
           Ready to turn <span className="serif-it" style={{ fontWeight: 400, color: "var(--espresso)" }}>visitors</span><br/>
-          into <span className="grad-text">regulars?</span>
+          into <span style={{ color: "var(--terra)" }}>regulars?</span>
         </h2>
         <p style={{ marginTop: 26, maxWidth: 580, marginInline: "auto", fontSize: 17, lineHeight: 1.55, color: "var(--ink-soft)" }}>
           Become one of the first Aura Founder Partners and launch a loyalty experience your customers actually want to use.
@@ -2088,7 +2071,7 @@ function FinalCTASection() {
   );
 }
 
-/* ───────────── FOOTER — espresso, the closing dark moment ───────────── */
+/* ───────────── FOOTER, espresso, the closing dark moment ───────────── */
 function Footer() {
   return (
     <footer style={{ background: "var(--espresso)", color: "var(--cream)", padding: "100px 0 50px", position: "relative", overflow: "hidden" }}>
@@ -2119,7 +2102,7 @@ function Footer() {
           </div>
         </div>
 
-        {/* Mega serif wordmark — closes the loop with cozy section */}
+        {/* Mega serif wordmark, closes the loop with cozy section */}
         <div style={{ marginTop: 60, fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(140px, 26vw, 420px)", letterSpacing: "-0.04em", lineHeight: 0.85, color: "transparent", WebkitTextStroke: "1px rgba(232,172,88,0.16)", textAlign: "center" }}>aura</div>
       </div>
     </footer>
@@ -2139,25 +2122,25 @@ function FootCol({ title, items }) {
   );
 }
 
-/* ───────────── HOW IT WORKS — 3 steps, before pricing ───────────── */
+/* ───────────── HOW IT WORKS, 3 steps, before pricing ───────────── */
 function HowItWorksSection() {
   const steps = [
     {
       n: "01",
       t: "Build your loyalty system",
-      c: "We design your rewards, offers, QR menu, and customer flow — branded to your café.",
+      c: "We design your rewards, offers, QR menu, and customer flow, branded to your café.",
       icon: <Icon.spark />,
     },
     {
       n: "02",
       t: "Launch your first campaigns",
-      c: "Happy hour, review requests, social promotions, and return offers — live in days, not months.",
+      c: "Happy hour, review requests, social promotions, and return offers, live in days, not months.",
       icon: <Icon.bolt />,
     },
     {
       n: "03",
       t: "Track what brings people back",
-      c: "Repeat visits, members, rewards, and campaign performance — in one clear dashboard.",
+      c: "Repeat visits, members, rewards, and campaign performance, in one clear dashboard.",
       icon: <Icon.trend />,
     },
   ];
@@ -2166,7 +2149,6 @@ function HowItWorksSection() {
     <section className="section grain grain-soft" id="how" style={{ background: "var(--cream)" }}>
       <div className="container" style={{ position: "relative" }}>
         <div style={{ textAlign: "center", maxWidth: 720, margin: "0 auto" }}>
-          <div className="eyebrow" style={{ justifyContent: "center" }}><span className="dot" /> How it works</div>
           <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 60px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
             Launch in <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>14 days.</span>
           </h2>
@@ -2182,10 +2164,10 @@ function HowItWorksSection() {
             <div key={s.n} className="card-hover" style={{
               position: "relative",
               padding: 28,
-              borderRadius: 22,
-              background: "rgba(255,255,255,0.62)",
+              borderRadius: 16,
+              background: "rgba(252,247,236,0.95)",
               backdropFilter: "blur(14px)",
-              border: "1px solid rgba(255,255,255,0.85)",
+              border: "1px solid rgba(42,31,24,0.08)",
               boxShadow: "0 20px 50px -30px rgba(42,31,24,0.18)",
               zIndex: 1,
             }}>
@@ -2199,7 +2181,6 @@ function HowItWorksSection() {
                 position: "relative",
                 boxShadow: "0 0 0 6px var(--cream)",
               }}>{s.icon}</div>
-              <div className="mono" style={{ color: "var(--muted)" }}>Step {s.n}</div>
               <h3 style={{ marginTop: 8, fontFamily: "var(--display)", fontSize: 22, fontWeight: 600, letterSpacing: "-0.025em", lineHeight: 1.15 }}>{s.t}</h3>
               <p style={{ marginTop: 10, fontSize: 14, lineHeight: 1.55, color: "var(--ink-soft)" }}>{s.c}</p>
             </div>
@@ -2256,7 +2237,7 @@ function MobileStickyCTA() {
   );
 }
 
-/* ───────────── TESTIMONIALS — social proof before pricing ───────────── */
+/* ───────────── TESTIMONIALS, social proof before pricing ───────────── */
 function TestimonialAvatar({ src, name, accent }) {
   const [ok, setOk] = useState(true);
   const initials = name.split(" ").map((w) => w[0]).slice(0, 2).join("");
@@ -2289,7 +2270,7 @@ function Stars({ n = 5 }) {
 function TestimonialsSection() {
   const stories = [
     {
-      quote: "We stopped renting our regulars from delivery apps. Direct orders are up, and people actually chase the streak — they tell me they came in just to keep it alive.",
+      quote: "We stopped renting our regulars from delivery apps. Direct orders are up, and people actually chase the streak, they tell me they came in just to keep it alive.",
       name: "Elena Moretti", role: "Owner · Caffè Lumo, Brooklyn",
       img: "/assets/testimonials/elena-moretti.jpg", accent: "var(--terra)",
     },
@@ -2316,13 +2297,12 @@ function TestimonialsSection() {
     <section className="section grain grain-soft" id="stories" style={{ background: "var(--sand)" }}>
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
         <div style={{ textAlign: "center", maxWidth: 720, margin: "0 auto" }}>
-          <div className="eyebrow" style={{ justifyContent: "center" }}><span className="dot" /> Loved by independent owners</div>
           <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(34px, 4.2vw, 56px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
             The regulars came back.<br />
             <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>So did the margins.</span>
           </h2>
           <p style={{ marginTop: 22, fontSize: 16, color: "var(--ink-soft)" }}>
-            What changes when your café remembers every customer — and knows exactly who to bring back next.
+            What changes when your café remembers every customer, and knows exactly who to bring back next.
           </p>
         </div>
 
@@ -2331,8 +2311,8 @@ function TestimonialsSection() {
           {metrics.map((m) => (
             <div key={m.l} className="card-hover" style={{
               padding: "24px 20px", borderRadius: 18, textAlign: "center",
-              background: "rgba(255,255,255,0.55)", backdropFilter: "blur(14px)",
-              border: "1px solid rgba(255,255,255,0.85)",
+              background: "rgba(252,247,236,0.92)", backdropFilter: "blur(14px)",
+              border: "1px solid rgba(42,31,24,0.08)",
               boxShadow: "0 14px 30px -22px rgba(42,31,24,0.16)",
             }}>
               <div style={{ fontFamily: "var(--display)", fontWeight: 600, fontSize: 40, letterSpacing: "-0.04em", lineHeight: 1, color: "var(--ink)" }}>{m.v}</div>
@@ -2349,9 +2329,9 @@ function TestimonialsSection() {
           {stories.map((s) => (
             <figure key={s.name} className="card-hover" style={{
               margin: 0, position: "relative",
-              padding: 28, borderRadius: 22,
-              background: "rgba(255,255,255,0.62)", backdropFilter: "blur(14px)",
-              border: "1px solid rgba(255,255,255,0.85)",
+              padding: 28, borderRadius: 16,
+              background: "rgba(252,247,236,0.95)", backdropFilter: "blur(14px)",
+              border: "1px solid rgba(42,31,24,0.08)",
               boxShadow: "0 20px 50px -30px rgba(42,31,24,0.18)",
               display: "flex", flexDirection: "column",
             }}>
@@ -2376,12 +2356,12 @@ function TestimonialsSection() {
   );
 }
 
-/* ───────────── FAQ — objection handling before the final CTA ───────────── */
+/* ───────────── FAQ, objection handling before the final CTA ───────────── */
 function FAQItem({ q, a, open, onToggle, id }) {
   return (
     <div style={{
       borderRadius: 16, overflow: "hidden",
-      background: open ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.4)",
+      background: open ? "rgba(252,247,236,0.94)" : "rgba(255,255,255,0.4)",
       border: "1px solid " + (open ? "rgba(214,122,69,0.3)" : "var(--hairline)"),
       transition: "background .25s, border-color .25s",
     }}>
@@ -2421,12 +2401,12 @@ function FAQItem({ q, a, open, onToggle, id }) {
 function FAQSection() {
   const [open, setOpen] = useState(0);
   const faqs = [
-    { q: "How long until we're live?", a: "Most cafés launch within 14 days. We build your loyalty system, rewards, and QR menu with you — you approve, we ship. No long onboarding, no blank screens." },
-    { q: "Will my customers actually use it?", a: "There's no app store to fight. Customers join from a QR code and use it from the web — rewards they can feel, a streak worth keeping, and offers that land at the right moment. Adoption is the whole design." },
-    { q: "Do I need to replace my POS?", a: "No. Aura runs alongside whatever you use today. Direct QR ordering is commission-free, so the orders you bring in stay yours — margin and all." },
-    { q: "Is there a long contract?", a: "Plans are month-to-month and you can cancel anytime. Founder Partners simply lock in early pricing — there's no multi-year commitment." },
-    { q: "Who sets everything up?", a: "We do. Launch setup is done-for-you: rewards, offers, QR menu, branding, and your first campaigns — all configured and reviewed with you before you go live." },
-    { q: "Who owns the customer data?", a: "You do. Always. Names, emails, phone numbers, birthdays, favorites, and visit history belong to your business — not a delivery platform, not us." },
+    { q: "How long until we're live?", a: "Most cafés launch within 14 days. We build your loyalty system, rewards, and QR menu with you, you approve, we ship. No long onboarding, no blank screens." },
+    { q: "Will my customers actually use it?", a: "There's no app store to fight. Customers join from a QR code and use it from the web, rewards they can feel, a streak worth keeping, and offers that land at the right moment. Adoption is the whole design." },
+    { q: "Do I need to replace my POS?", a: "No. Aura runs alongside whatever you use today. Direct QR ordering is commission-free, so the orders you bring in stay yours, margin and all." },
+    { q: "Is there a long contract?", a: "Plans are month-to-month and you can cancel anytime. Founder Partners simply lock in early pricing, there's no multi-year commitment." },
+    { q: "Who sets everything up?", a: "We do. Launch setup is done-for-you: rewards, offers, QR menu, branding, and your first campaigns, all configured and reviewed with you before you go live." },
+    { q: "Who owns the customer data?", a: "You do. Always. Names, emails, phone numbers, birthdays, favorites, and visit history belong to your business, not a delivery platform, not us." },
   ];
 
   return (
@@ -2434,13 +2414,12 @@ function FAQSection() {
       <div className="container">
         <div className="r-split" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 64, alignItems: "start" }}>
           <div className="r-unstick" style={{ position: "sticky", top: 110 }}>
-            <div className="eyebrow"><span className="dot" /> Questions, answered</div>
             <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(34px, 4vw, 54px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
               Everything you're<br />
               <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>probably wondering.</span>
             </h2>
             <p style={{ marginTop: 24, fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: 380 }}>
-              Still unsure? A 20-minute growth demo answers the rest — no commitment, no pressure.
+              Still unsure? A 20-minute growth demo answers the rest, no commitment, no pressure.
             </p>
             <a href="#cta" className="btn-primary" style={{ marginTop: 24 }}>
               Book a free growth demo <span className="arrow-circle" aria-hidden="true">→</span>
@@ -2461,7 +2440,7 @@ function FAQSection() {
 
 
 /* ===== app ===== */
-/* AURA — main app, with GSAP-driven scroll orchestration */
+/* AURA, main app, with GSAP-driven scroll orchestration */
 
 function App() {
   const t = AURA_DEFAULTS;
@@ -2501,7 +2480,7 @@ function App() {
 
     // Respect motion preferences & skip scroll-jacking on small screens.
     // The CSS already unrolls the pinned sections into a static stack in both
-    // cases — here we simply don't create the ScrollTriggers, so nothing fights it.
+    // cases, here we simply don't create the ScrollTriggers, so nothing fights it.
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isNarrow = window.matchMedia("(max-width: 860px)").matches;
     if (reduceMotion || isNarrow) return;

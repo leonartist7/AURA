@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
   :root {
-    /* ── Daylight arc — one warm tone family, no jarring flips ───────── */
-    --cream:      #F3EAD7;   /* morning           — page base            */
-    --cream-warm: #F7F0DE;   /* warm interior     — cards / soft panels  */
-    --sand:       #ECE0C6;   /* late morning      — subtle elevation     */
-    --clay:       #DECBA6;   /* afternoon         — transition warmth    */
-    --terracotta: #C9986C;   /* dusk              — accent surface       */
-    --espresso:   #1F1612;   /* night             — the cozy moment      */
+    /* ── Daylight arc - one warm tone family, no jarring flips ───────── */
+    --cream:      #F3EAD7;   /* morning           - page base            */
+    --cream-warm: #F7F0DE;   /* warm interior     - cards / soft panels  */
+    --sand:       #ECE0C6;   /* late morning      - subtle elevation     */
+    --clay:       #DECBA6;   /* afternoon         - transition warmth    */
+    --terracotta: #C9986C;   /* dusk              - accent surface       */
+    --espresso:   #1F1612;   /* night             - the cozy moment      */
     --espresso-2: #2A1F18;
     --ink:        #2A1F18;   /* primary text on cream                    */
-    --ink-soft:   rgba(42, 31, 24, 0.65);
-    --muted:      rgba(42, 31, 24, 0.55);
+    --ink-soft:   rgba(42, 31, 24, 0.78);
+    --muted:      rgba(42, 31, 24, 0.64);
     --hairline:   rgba(42, 31, 24, 0.1);
     --hairline-light: rgba(243, 234, 215, 0.14);
 
-    /* ── Accents — warm earthy spectrum only, shared chroma ─────────── */
+    /* ── Accents - warm earthy spectrum only, shared chroma ─────────── */
     --terra:   #D67A45;  /* primary warm   */
     --rose:    #DC8B7E;  /* soft rose      */
     --saffron: #E5B14A;  /* gold/amber     */
@@ -105,7 +105,7 @@
     100% { background-position: 200% 0; }
   }
 
-  /* reveal — opacity 1 by default; JS removes 'reveal' class on load, then re-adds + observes for animation. Falls back gracefully if JS slow. */
+  /* reveal - opacity 1 by default; JS removes 'reveal' class on load, then re-adds + observes for animation. Falls back gracefully if JS slow. */
   .reveal { opacity: 1; transform: none; transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
   .reveal-pre { opacity: 0; transform: translateY(28px); }
   .reveal-pre.in { opacity: 1; transform: none; }
@@ -238,7 +238,7 @@
     z-index: 10;
   }
 
-  /* gradient text — warm only */
+  /* gradient text - warm only */
   .grad-text {
     background: linear-gradient(95deg, var(--terra) 0%, var(--rose) 35%, var(--plum) 70%, var(--saffron) 100%);
     -webkit-background-clip: text;
@@ -256,7 +256,7 @@
   }
   .ghost-word.on-dark { -webkit-text-stroke: 1px rgba(243,234,215,0.16); }
 
-  /* section spacing — overflow: clip lets position:sticky children pin properly */
+  /* section spacing - overflow: clip lets position:sticky children pin properly */
   .section { position: relative; padding: 130px 0; overflow: clip; }
   .section.tight { padding: 100px 0; }
   .section.dark { background: var(--espresso); color: var(--cream); }
@@ -333,7 +333,7 @@
   /* utility flex/grid */
   .flow > * + * { margin-top: 24px; }
 
-  /* sticky stage — for curtain / pin sections */
+  /* sticky stage - for curtain / pin sections */
   .stage {
     position: relative;
   }
@@ -354,7 +354,7 @@
     will-change: transform;
   }
 
-  /* ── Interaction polish — hover lift + visible focus (applied app-wide) ─── */
+  /* ── Interaction polish - hover lift + visible focus (applied app-wide) ─── */
   .card-hover { transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s cubic-bezier(.2,.7,.2,1), border-color .28s; will-change: transform; }
   .card-hover:hover { transform: translateY(-4px); }
 
@@ -368,7 +368,7 @@
   /* don't show the ring on mouse users who haven't tabbed */
   :focus:not(:focus-visible) { outline: none; }
 
-  /* ── Responsive grid hooks — classes beat inline styles via !important ─── */
+  /* ── Responsive grid hooks - classes beat inline styles via !important ─── */
   @media (max-width: 1024px) {
     .r-4 { grid-template-columns: repeat(2, 1fr) !important; }
   }
@@ -414,7 +414,7 @@
     [data-pin-cozy] [data-cozy-dots] { display: none !important; }
   }
 
-  /* Mobile sticky CTA — only show on small screens */
+  /* Mobile sticky CTA - only show on small screens */
   @media (min-width: 901px) {
     .mobile-sticky-cta { display: none !important; }
   }
@@ -424,7 +424,7 @@
     body { padding-bottom: 80px; }
   }
 
-  /* ── Reduced motion — respect the OS setting (skill: HIGH severity) ─────── */
+  /* ── Reduced motion - respect the OS setting (skill: HIGH severity) ─────── */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.001ms !important;
@@ -452,5 +452,5 @@
     [data-pin-cozy] [data-cozy-dots] { display: none !important; }
   }
 
-/* landing wrapper — owns bg/color/font so it does not fight the diagnostic layout */
+/* landing wrapper - owns bg/color/font so it does not fight the diagnostic layout */
 .aura-landing-root{font-family:var(--body);color:var(--ink);background:var(--cream);position:relative;min-height:100vh;overflow-x:hidden;}
