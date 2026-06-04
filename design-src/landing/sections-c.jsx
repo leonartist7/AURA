@@ -9,14 +9,11 @@ function DashboardSection() {
       <div style={{ position: "absolute", right: -100, bottom: -100, width: 500, height: 500, background: "radial-gradient(circle, rgba(141,107,141,0.16), transparent 60%)", filter: "blur(60px)", zIndex: 0 }} />
 
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
-        <div className="r-2 r-end" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "end", marginBottom: 56 }}>
-          <div>
-            <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 60px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
-              Simple control.<br/>
-              <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>Real</span> growth signals.
-            </h2>
-          </div>
-          <p className="r-right" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: 460, marginLeft: "auto" }}>
+        <div style={{ maxWidth: 720, marginBottom: 48 }}>
+          <h2 style={{ fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 58px)", letterSpacing: "-0.035em", lineHeight: 1.02, textWrap: "balance" }}>
+            Simple control. <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>Real</span> growth signals.
+          </h2>
+          <p style={{ marginTop: 18, fontSize: 17, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: "60ch" }}>
             See what matters without drowning in complicated dashboards. Know who is returning, who is fading, what campaign worked, and what to launch next.
           </p>
         </div>

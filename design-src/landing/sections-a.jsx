@@ -227,14 +227,11 @@ function SolutionSection() {
   return (
     <section className="section grain grain-soft" id="solution" style={{ background: "var(--cream-warm)" }}>
       <div className="container">
-        <div className="r-2 r-end" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "end", marginBottom: 80 }}>
-          <div>
-            <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 62px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
-              Everything you need<br />
-              to <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>bring customers back.</span>
-            </h2>
-          </div>
-          <p className="r-right" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: 440, marginLeft: "auto" }}>
+        <div style={{ textAlign: "center", maxWidth: 680, margin: "0 auto 72px" }}>
+          <h2 style={{ fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 60px)", letterSpacing: "-0.035em", lineHeight: 1.04, textWrap: "balance" }}>
+            Everything you need to <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>bring customers back.</span>
+          </h2>
+          <p style={{ marginTop: 18, fontSize: 17, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: "52ch", marginInline: "auto" }}>
             Six connected systems that turn visits, orders, and promotions into repeat revenue.
           </p>
         </div>

@@ -18,14 +18,11 @@ function AppExperienceSection() {
       }}
     >
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
-        <div className="r-2 r-end" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "end", marginBottom: 48 }}>
-          <div>
-            <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 60px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
-              Make every visit feel like<br />
-              <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>progress.</span>
-            </h2>
-          </div>
-          <p className="r-right" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: 440, marginLeft: "auto" }}>
+        <div style={{ maxWidth: 720, marginBottom: 56 }}>
+          <h2 style={{ fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 58px)", letterSpacing: "-0.035em", lineHeight: 1.02, textWrap: "balance" }}>
+            Make every visit feel like <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>progress.</span>
+          </h2>
+          <p style={{ marginTop: 18, fontSize: 17, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: "60ch" }}>
             A customer-facing app that turns coffee into a quiet ritual, points you can feel, perks you can see, rewards worth coming back for.
           </p>
         </div>
@@ -236,14 +233,11 @@ function GamificationSection() {
       </div>
 
       <div className="container" style={{ position: "relative", zIndex: 3 }}>
-        <div className="r-2 r-end" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "end", marginBottom: 80 }}>
-          <div>
-            <h2 style={{ marginTop: 28, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 64px)", letterSpacing: "-0.035em", lineHeight: 1.0 }}>
-              Loyalty should feel<br/>
-              <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>like a small celebration.</span>
-            </h2>
-          </div>
-          <p className="r-right" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: 460, marginLeft: "auto" }}>
+        <div style={{ textAlign: "center", maxWidth: 720, margin: "0 auto 64px" }}>
+          <h2 style={{ fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(36px, 4.4vw, 62px)", letterSpacing: "-0.035em", lineHeight: 1.04, textWrap: "balance" }}>
+            Loyalty should feel <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>like a small celebration.</span>
+          </h2>
+          <p style={{ marginTop: 18, fontSize: 17, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: "54ch", marginInline: "auto" }}>
             Not a paper card. Customers unlock progress, status, surprises, quiet reasons to come back that don't shout.
           </p>
         </div>
