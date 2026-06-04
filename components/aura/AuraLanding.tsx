@@ -2127,6 +2127,9 @@ function FinalCTASection() {
 function Footer() {
   return (
     <footer style={{ background: "var(--espresso)", color: "var(--cream)", padding: "100px 0 50px", position: "relative", overflow: "hidden" }}>
+      {/* macro espresso/crema texture, sunk almost to black so it only adds grain + depth behind the wordmark. Vanishes gracefully until the asset lands. */}
+      <BrandPhoto src="/assets/brand/footer-espresso.jpg" alt="" fill grade={0.7} fallback={null}
+        imgStyle={{ opacity: 0.16 }} />
       {/* faint warm spotlight */}
       <div style={{ position: "absolute", left: "50%", top: -80, transform: "translateX(-50%)", width: 700, height: 240, background: "radial-gradient(ellipse, rgba(232,172,88,0.18), transparent 60%)", filter: "blur(40px)", pointerEvents: "none" }} />
 
