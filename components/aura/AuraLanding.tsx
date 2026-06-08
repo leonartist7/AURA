@@ -313,7 +313,7 @@ function BrandPhoto({ src, alt = "", fallback = null, radius = 16, grade = 0.22,
         src={src} alt={alt} onError={() => setOk(false)}
         loading={eager ? "eager" : "lazy"} decoding="async"
         // @ts-ignore
-        fetchpriority={eager ? "high" : "auto"}
+        fetchPriority={eager ? "high" : "auto"}
         style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", ...imgStyle }}
       />
       {/* warm grade so cool/stocky shots still read on-brand */}
@@ -1881,7 +1881,7 @@ function BigChart() {
   const p1 = make(0, 6, 60);
   const p2 = make(1, 4, 40);
   const p3 = make(1.5, 3, 22);
-  const path = (pts) => "M" + pts.map(([x, y]) => `${x} ${y}`).join(" L ");
+  const path = (pts) => "M" + pts.map(([x, y]) => `${x.toFixed(3)} ${y.toFixed(3)}`).join(" L ");
   const area = (pts) => path(pts) + ` L 100 100 L 0 100 Z`;
   return (
     <svg viewBox="0 0 100 80" preserveAspectRatio="none" style={{ width: "100%", height: 180, marginTop: 14 }}>
