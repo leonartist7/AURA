@@ -815,6 +815,10 @@ function HeroSection({ headline }) {
               position: "absolute", left: "50%", top: 0, transform: "translateX(-50%)",
               width: 320, height: 680
             }}>
+              {/* hero-glow.png: warm analog bokeh light-leak behind phone — gracefully absent until file dropped in */}
+              <BrandPhoto src="/assets/brand/hero-glow.png" alt="" fallback={null} radius={0}
+                style={{ position: "absolute", inset: -80, zIndex: 0, mixBlendMode: "screen", opacity: 0.9 }}
+                imgStyle={{ width: "100%", height: "100%", objectFit: "cover" }} />
               <div style={{
                 position: "absolute", inset: -60,
                 background: "radial-gradient(ellipse at 50% 40%, rgba(214,122,69,0.45), transparent 60%)",
@@ -1675,14 +1679,16 @@ function CozySpaceSection() {
               }} />
               <div style={{ position: "relative", animation: "float-y-2 9s ease-in-out infinite" }}>
                 <Phone scale={0.92}><ScreenHome /></Phone>
-                {/* steam */}
-                <svg style={{ position: "absolute", top: -70, left: "50%", transform: "translateX(-50%)", pointerEvents: "none" }} width="120" height="70">
-                  <defs>
-                    <filter id="steamblur"><feGaussianBlur stdDeviation="4" /></filter>
-                  </defs>
-                  <path d="M40 70 Q 30 45 50 28 Q 70 8 50 0" stroke="rgba(243,234,215,0.18)" strokeWidth="2" fill="none" filter="url(#steamblur)" />
-                  <path d="M70 70 Q 80 45 60 28 Q 40 8 60 0" stroke="rgba(243,234,215,0.14)" strokeWidth="2" fill="none" filter="url(#steamblur)" />
-                </svg>
+                {/* steam — real photo if available, SVG fallback */}
+                <BrandPhoto src="/assets/brand/steam-dark.png" alt="" fallback={
+                  <svg style={{ position: "absolute", top: -70, left: "50%", transform: "translateX(-50%)", pointerEvents: "none" }} width="120" height="70">
+                    <defs><filter id="steamblur"><feGaussianBlur stdDeviation="4" /></filter></defs>
+                    <path d="M40 70 Q 30 45 50 28 Q 70 8 50 0" stroke="rgba(243,234,215,0.18)" strokeWidth="2" fill="none" filter="url(#steamblur)" />
+                    <path d="M70 70 Q 80 45 60 28 Q 40 8 60 0" stroke="rgba(243,234,215,0.14)" strokeWidth="2" fill="none" filter="url(#steamblur)" />
+                  </svg>
+                } radius={0}
+                  style={{ position: "absolute", top: -140, left: "50%", transform: "translateX(-50%)", width: 160, height: 200, mixBlendMode: "screen", opacity: 0.7, pointerEvents: "none", zIndex: 5 }}
+                  imgStyle={{ width: "100%", height: "100%", objectFit: "contain" }} />
               </div>
 
               <div style={{ position: "absolute", top: 80, right: -10, animation: "float-y 9s ease-in-out infinite -2s", zIndex: 4 }}>
