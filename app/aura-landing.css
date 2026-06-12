@@ -412,7 +412,27 @@
       transform: none !important; margin-bottom: 40px;
     }
     [data-pin-cozy] [data-cozy-dots] { display: none !important; }
+
+    /* sticky phone journey: swap pinned stage for the static stack */
+    [data-pin-journey] { min-height: 0 !important; }
+    [data-pin-journey] .journey-desktop { display: none !important; }
+    [data-pin-journey] .journey-mobile { display: block !important; }
+
+    /* horizontal drift: unpin, panels stack vertically */
+    [data-h-drift] { min-height: 0 !important; }
+    [data-h-drift] > div {
+      position: static !important; height: auto !important; overflow: visible !important;
+    }
+    [data-h-drift] [data-h-track] {
+      transform: none !important; display: block !important; width: 100% !important; height: auto !important;
+    }
+    [data-h-drift] [data-h-panel] {
+      width: 100% !important; min-height: 78vh; padding: 72px 0;
+    }
   }
+
+  /* journey mobile stack hidden on desktop */
+  .journey-mobile { display: none; }
 
   /* Mobile sticky CTA - only show on small screens */
   @media (min-width: 901px) {
@@ -450,6 +470,21 @@
     }
     [data-pin-cozy] [data-cozy-stack] { height: auto !important; }
     [data-pin-cozy] [data-cozy-dots] { display: none !important; }
+
+    /* sticky phone journey + horizontal drift unroll to static stacks */
+    [data-pin-journey] { min-height: 0 !important; }
+    [data-pin-journey] .journey-desktop { display: none !important; }
+    [data-pin-journey] .journey-mobile { display: block !important; }
+    [data-h-drift] { min-height: 0 !important; }
+    [data-h-drift] > div {
+      position: static !important; height: auto !important; overflow: visible !important;
+    }
+    [data-h-drift] [data-h-track] {
+      transform: none !important; display: block !important; width: 100% !important; height: auto !important;
+    }
+    [data-h-drift] [data-h-panel] {
+      width: 100% !important; min-height: 70vh; padding: 90px 0;
+    }
   }
 
 /* landing wrapper - owns bg/color/font so it does not fight the diagnostic layout */

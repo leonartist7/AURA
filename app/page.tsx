@@ -3,13 +3,13 @@ import './aura-landing.css';
 import AuraLanding from '@/components/aura/AuraLanding';
 
 export const metadata: Metadata = {
-  title: 'AURA: Turn first-time visitors into regulars',
+  title: "AURA CLUB — Your neighborhood's favorite. On purpose.",
   description:
-    'Aura gives your café or restaurant a branded loyalty system, smart promotions, direct ordering, and gamified rewards that bring customers back, without depending only on delivery apps or social media.',
+    'The club for cafés & restaurants that turns first visits into rituals — loyalty, offers, and direct ordering your regulars actually love. A few partners per neighborhood. First month free.',
   openGraph: {
-    title: 'AURA: Turn first-time visitors into regulars',
+    title: "AURA CLUB — Your neighborhood's favorite. On purpose.",
     description:
-      'AI loyalty, ordering & marketing for cafés and restaurants. Book a free growth demo.',
+      'The club that turns first visits into rituals. A few partners per neighborhood. First month free.',
     type: 'website',
   },
 };
