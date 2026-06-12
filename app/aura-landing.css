@@ -130,6 +130,48 @@
     border: 1px solid rgba(255,255,255,0.08);
   }
 
+  /* ── Liquid glass cards (ecosystem strip) ───────────────────────── */
+  .glass-card {
+    position: relative;
+    border-radius: 24px;
+    background: linear-gradient(160deg, rgba(255,255,255,0.55), rgba(255,255,255,0.26));
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.68);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.85) inset,
+      0 -1px 0 rgba(255,255,255,0.25) inset,
+      0 40px 80px -32px rgba(42,31,24,0.4);
+    transform-style: preserve-3d;
+    transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+  }
+  .glass-card::after {
+    /* pointer-following light sweep */
+    content: "";
+    position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 40%), rgba(255,255,255,0.4), transparent 55%);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .glass-card:hover::after { opacity: 1; }
+  .glass-card:hover { box-shadow: 0 1px 0 rgba(255,255,255,0.85) inset, 0 50px 100px -34px rgba(42,31,24,0.5); }
+  .glass-card-dark {
+    background: linear-gradient(160deg, rgba(31,22,18,0.8), rgba(31,22,18,0.62));
+    border: 1px solid rgba(243,234,215,0.18);
+    color: var(--cream);
+  }
+  .glass-card-dark::after {
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 40%), rgba(232,172,88,0.22), transparent 55%);
+  }
+
+  /* ── Scroll progress aura ──────────────────────────────────────── */
+  .scroll-aura {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0;
+    z-index: 90; pointer-events: none;
+    background: linear-gradient(90deg, var(--terra), var(--saffron), var(--rose));
+    box-shadow: 0 0 12px rgba(214,122,69,0.5);
+  }
+
   /* button primary */
   .btn-primary {
     display: inline-flex; align-items: center; gap: 10px;
@@ -418,16 +460,19 @@
     [data-pin-journey] .journey-desktop { display: none !important; }
     [data-pin-journey] .journey-mobile { display: block !important; }
 
-    /* horizontal drift: unpin, panels stack vertically */
+    /* glass ecosystem: unpin, cards stack vertically */
     [data-h-drift] { min-height: 0 !important; }
     [data-h-drift] > div {
       position: static !important; height: auto !important; overflow: visible !important;
+      padding: 72px 0 88px;
     }
+    [data-h-drift] .glass-head { position: static !important; padding: 0 20px 36px !important; }
     [data-h-drift] [data-h-track] {
-      transform: none !important; display: block !important; width: 100% !important; height: auto !important;
+      transform: none !important; display: grid !important; width: 100% !important; height: auto !important;
+      gap: 18px; padding: 0 20px !important;
     }
     [data-h-drift] [data-h-panel] {
-      width: 100% !important; min-height: 78vh; padding: 72px 0;
+      width: 100% !important; margin-top: 0 !important;
     }
   }
 
@@ -478,13 +523,18 @@
     [data-h-drift] { min-height: 0 !important; }
     [data-h-drift] > div {
       position: static !important; height: auto !important; overflow: visible !important;
+      padding: 90px 0;
     }
+    [data-h-drift] .glass-head { position: static !important; padding: 0 24px 36px !important; }
     [data-h-drift] [data-h-track] {
-      transform: none !important; display: block !important; width: 100% !important; height: auto !important;
+      transform: none !important; display: grid !important; width: 100% !important; height: auto !important;
+      gap: 18px; padding: 0 24px !important;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
     [data-h-drift] [data-h-panel] {
-      width: 100% !important; min-height: 70vh; padding: 90px 0;
+      width: 100% !important; margin-top: 0 !important;
     }
+    .scroll-aura { display: none; }
   }
 
 /* landing wrapper - owns bg/color/font so it does not fight the diagnostic layout */

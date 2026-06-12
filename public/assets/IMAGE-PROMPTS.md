@@ -31,6 +31,18 @@ Full-bleed behind the final close, sunk to ~16% opacity under the wordmark.
 > caramel-and-mahogany tiger-striping, tiny golden bubbles catching one warm
 > light, most of the frame deep espresso-black. Abstract, tactile. *(+ grade)*
 
+### P2 — `cafe-corner.jpg` — 1792×1024
+Texture for "The corner café" welcome vignette (16:9 crop).
+> Close macro of a warm wooden café counter edge at golden hour — a ceramic
+> cup rim, soft window haze, defocused espresso machine glow behind. No
+> people, abstract warmth. *(+ shared grade)*
+
+### P2 — `kitchen-warm.jpg` — 1792×1024
+Texture for "The neighborhood kitchen" welcome vignette (16:9 crop).
+> Close macro of a warm restaurant pass at dusk — the edge of a plated dish,
+> brass lamp glow, linen napkin texture, deep cozy shadows. No people,
+> abstract warmth. *(+ shared grade)*
+
 ### P2 — `divider-pour.jpg` — 1792×1024
 Texture card in the "Morning" drift panel.
 > Extreme close-up of steamed-milk microfoam folding into espresso to begin

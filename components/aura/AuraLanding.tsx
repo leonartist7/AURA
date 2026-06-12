@@ -675,7 +675,102 @@ function HeroSection() {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   SECTION 2 — THE LEAK. Dark, emotional, 3 beats + the $100 viz.
+   SECTION 2 — THE WELCOME. Breathing room: manifesto, dual
+   vignettes (café + restaurant), ecosystem teaser. Trust before pain.
+   ════════════════════════════════════════════════════════════════ */
+function MockTable() {
+  return (
+    <div style={{ padding: 14, borderRadius: 14, background: "linear-gradient(135deg, rgba(157,170,126,0.14), rgba(229,177,74,0.1))", border: "1px solid rgba(42,31,24,0.06)" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10.5, color: "var(--muted)", fontFamily: "var(--mono)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+        <span>Tonight</span><span>19:30</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 8 }}>
+        <div style={{ width: 30, height: 30, borderRadius: 9, background: "var(--sage)", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700 }}>R</div>
+        <div>
+          <div style={{ fontWeight: 600, fontSize: 13.5 }}>The Riveras · table 4</div>
+          <div style={{ fontSize: 11.5, color: "var(--muted)" }}>3rd visit this month · birthday Friday</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WelcomeSection() {
+  const vignettes = [
+    {
+      key: "cafe",
+      img: "/assets/brand/cafe-corner.jpg",
+      grad: "linear-gradient(135deg, rgba(214,122,69,0.16), rgba(229,177,74,0.1))",
+      title: "The corner café",
+      copy: "Where the 7 AM regulars have a usual — and a streak that brings them back tomorrow.",
+      mock: <MockLoyalty />,
+    },
+    {
+      key: "kitchen",
+      img: "/assets/brand/kitchen-warm.jpg",
+      grad: "linear-gradient(135deg, rgba(157,170,126,0.16), rgba(220,139,126,0.1))",
+      title: "The neighborhood kitchen",
+      copy: "Where Friday tables come back on Sunday — birthdays remembered, favorites saved.",
+      mock: <MockTable />,
+    },
+  ];
+  return (
+    <section id="welcome" className="section grain grain-soft" style={{ background: "var(--cream-warm)", paddingTop: 170, paddingBottom: 170 }}>
+      <div style={{ position: "absolute", left: "50%", top: 0, transform: "translateX(-50%)", width: 900, height: 500, background: "radial-gradient(ellipse, rgba(229,177,74,0.14), transparent 60%)", filter: "blur(50px)", pointerEvents: "none" }} />
+      <div className="container" style={{ position: "relative", zIndex: 2 }}>
+        {/* manifesto */}
+        <Reveal>
+          <div style={{ textAlign: "center", maxWidth: 920, margin: "0 auto" }}>
+            <div className="eyebrow" style={{ justifyContent: "center" }}><span className="dot" /> The welcome</div>
+            <h2 className="serif-it" style={{ marginTop: 30, fontWeight: 400, fontSize: "clamp(38px, 5.4vw, 84px)", letterSpacing: "-0.02em", lineHeight: 1.06, color: "var(--ink)" }}>
+              Some places sell coffee.<br/>
+              Some serve dinner.<br/>
+              <span style={{ color: "var(--terra)" }}>Yours sells belonging.</span>
+            </h2>
+          </div>
+        </Reveal>
+
+        {/* dual vignettes — both rooms see themselves */}
+        <div className="r-2" style={{ marginTop: 100, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, maxWidth: 980, marginInline: "auto" }}>
+          {vignettes.map((v, i) => (
+            <Reveal key={v.key} delay={i * 120}>
+              <div className="card-hover" style={{
+                padding: 26, borderRadius: 22,
+                background: "rgba(252,247,236,0.9)",
+                border: "1px solid rgba(42,31,24,0.08)",
+                boxShadow: "0 30px 70px -40px rgba(42,31,24,0.25)",
+                height: "100%", display: "flex", flexDirection: "column",
+              }}>
+                {/* MEDIA SLOT: abstract texture — graceful gradient until file lands */}
+                <BrandPhoto src={v.img} alt="" radius={14} grade={0.18}
+                  style={{ aspectRatio: "16 / 9" }}
+                  fallback={<div style={{ aspectRatio: "16 / 9", borderRadius: 14, background: v.grad, border: "1px solid rgba(42,31,24,0.05)" }} />} />
+                <h3 style={{ marginTop: 22, fontFamily: "var(--display)", fontWeight: 600, fontSize: 24, letterSpacing: "-0.03em" }}>{v.title}</h3>
+                <p style={{ marginTop: 10, fontSize: 15, lineHeight: 1.55, color: "var(--ink-soft)", flex: 1 }}>{v.copy}</p>
+                <div style={{ marginTop: 20 }}>{v.mock}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* ecosystem teaser → leads into the journey */}
+        <Reveal delay={100}>
+          <div style={{ marginTop: 110, textAlign: "center" }}>
+            <div style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--muted)" }}>Aura isn't an app</div>
+            <p className="serif-it" style={{ marginTop: 16, fontSize: "clamp(26px, 3vw, 42px)", letterSpacing: "-0.015em", lineHeight: 1.15, color: "var(--ink)", maxWidth: 640, marginInline: "auto" }}>
+              It's the whole ecosystem behind your room.
+            </p>
+            <div style={{ marginTop: 28, color: "var(--terra)", animation: "float-y 3s ease-in-out infinite", fontSize: 20 }} aria-hidden="true">↓</div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 5 — THE LEAK. Dark pivot: what staying as-is costs.
+   Lands after the dream, right before the zone scarcity.
    ════════════════════════════════════════════════════════════════ */
 function LeakSection() {
   const beats = [
@@ -782,7 +877,7 @@ const JOURNEY_BEATS = [
   {
     k: "01", side: "left", title: "Join",
     big: <>Scan once.<br/><span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>In the club.</span></>,
-    body: "No app store, no signup walls. A QR on the counter and they're a member before their coffee is ready.",
+    body: "No app store, no signup walls. A QR on the counter and they're a member before their coffee — or their table — is ready.",
     screen: "home",
   },
   {
@@ -918,138 +1013,91 @@ function StickyPhoneJourney() {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   SECTION 4 — HORIZONTAL DRIFT. One day at their place, 4 panels.
+   SECTION 4 — LIQUID GLASS ECOSYSTEM. One membership, everything.
+   Floating glass cards travel through center as you scroll.
    ════════════════════════════════════════════════════════════════ */
-function DriftPanel({ bg, color = "var(--ink)", children, dark = false }) {
+function GlassPillar({ icon, tag, title, copy, accent, children, lift = 0 }) {
   return (
-    <div data-h-panel style={{
-      width: "100vw", height: "100%", flexShrink: 0,
-      display: "flex", alignItems: "center",
-      position: "relative", overflow: "hidden",
-      background: bg, color,
-    }}>
-      {children}
+    <div data-h-panel data-tilt className="glass-card" style={{ width: 350, flexShrink: 0, padding: 28, marginTop: lift }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ width: 42, height: 42, borderRadius: 12, background: accent, color: "white", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: `0 12px 26px -10px ${accent}` }}>{icon}</div>
+        <span className="mono" style={{ color: "var(--muted)" }}>{tag}</span>
+      </div>
+      <h3 style={{ marginTop: 22, fontFamily: "var(--display)", fontWeight: 600, fontSize: 24, letterSpacing: "-0.03em", lineHeight: 1.08 }}>{title}</h3>
+      <p style={{ marginTop: 10, fontSize: 14, lineHeight: 1.55, color: "var(--ink-soft)" }}>{copy}</p>
+      {children && <div style={{ marginTop: 18 }}>{children}</div>}
     </div>
   );
 }
 
-function HorizontalDrift() {
+function GlassEcosystem() {
   return (
-    <section id="drift" data-h-drift style={{ position: "relative", background: "var(--cream-warm)", minHeight: "350vh" }}>
+    <section id="ecosystem" data-h-drift style={{ position: "relative", background: "var(--cream-warm)", minHeight: "340vh" }}>
       <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
-        <div data-h-track style={{ display: "flex", height: "100%", width: "400vw", willChange: "transform" }}>
+        {/* vivid warmth behind the glass so the blur reads */}
+        <div style={{ position: "absolute", inset: 0, opacity: 0.9, pointerEvents: "none" }}>
+          <GradientRibbons variant="warm" opacity={0.9} />
+        </div>
+        <div className="grain grain-soft" style={{ position: "absolute", inset: 0, pointerEvents: "none" }} />
 
-          {/* P1 — MORNING */}
-          <DriftPanel bg="var(--cream-warm)">
-            <div className="grain grain-soft" style={{ position: "absolute", inset: 0 }} />
-            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(229,177,74,0.2), transparent 60%)", pointerEvents: "none" }} />
-            <div className="container" style={{ position: "relative", zIndex: 2 }}>
-              <div className="r-2" style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 60, alignItems: "center" }}>
-                <div>
-                  <div className="eyebrow"><span className="dot" /> 07:12 · before the rush</div>
-                  <h3 style={{ marginTop: 24, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(40px, 4.6vw, 72px)", letterSpacing: "-0.04em", lineHeight: 0.98 }}>
-                    The regulars arrive<br/><span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>before the rush.</span>
-                  </h3>
-                  <p style={{ marginTop: 20, maxWidth: 440, fontSize: 17, lineHeight: 1.55, color: "var(--ink-soft)" }}>
-                    Their usual is saved. Their streak is waiting. The morning starts inside your world.
-                  </p>
-                </div>
-                <div style={{ maxWidth: 320 }}>
-                  {/* MEDIA SLOT: abstract texture (divider-pour.jpg) — graceful gradient until then */}
-                  <BrandPhoto src="/assets/brand/divider-pour.jpg" alt="" radius={18} grade={0.2}
-                    style={{ aspectRatio: "4 / 3", marginBottom: 18 }}
-                    fallback={<div style={{ aspectRatio: "4 / 3", borderRadius: 18, marginBottom: 18, background: "linear-gradient(135deg, rgba(214,122,69,0.18), rgba(229,177,74,0.1))", border: "1px solid rgba(42,31,24,0.06)" }} />} />
-                  <MockLoyalty />
-                </div>
-              </div>
+        {/* header */}
+        <div className="glass-head" style={{ position: "absolute", top: "clamp(70px, 9vh, 120px)", left: 0, right: 0, textAlign: "center", zIndex: 3, padding: "0 24px", pointerEvents: "none" }}>
+          <div className="eyebrow" style={{ justifyContent: "center" }}><span className="dot" /> Not an app — an ecosystem</div>
+          <h2 style={{ marginTop: 16, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(32px, 4.2vw, 60px)", letterSpacing: "-0.04em", lineHeight: 1.0 }}>
+            One membership. <span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>The whole ecosystem.</span>
+          </h2>
+        </div>
+
+        {/* the floating glass track */}
+        <div data-h-track style={{
+          display: "flex", alignItems: "center", gap: 36, height: "100%",
+          paddingLeft: "calc(50vw - 175px)", paddingRight: "calc(50vw - 175px)",
+          paddingTop: 110,
+          width: "max-content", willChange: "transform",
+        }}>
+          <GlassPillar icon={<Icon.crown />} tag="Loyalty" title="Loyalty & status" accent="var(--terra)" lift={-20}
+            copy="Points, tiers, streaks, and a name remembered — paper cards never did this.">
+            <MockLoyalty />
+          </GlassPillar>
+
+          <GlassPillar icon={<Icon.qr />} tag="Ordering" title="Direct ordering" accent="var(--saffron)" lift={36}
+            copy="QR menus and pickup, commission-free. The orders you earn stay yours — margin and all." />
+
+          {/* human moment — a voice between the pillars */}
+          <div data-h-panel data-tilt className="glass-card" style={{ width: 330, flexShrink: 0, padding: 30, marginTop: -44 }}>
+            <div className="serif-it" aria-hidden="true" style={{ fontSize: 44, lineHeight: 0.6, color: "var(--terra)", opacity: 0.5 }}>&ldquo;</div>
+            <p className="serif-it" style={{ marginTop: 14, fontSize: 19, lineHeight: 1.4, letterSpacing: "-0.01em", color: "var(--ink)" }}>
+              It feels like having a marketing person I couldn't afford.
+            </p>
+            <div style={{ marginTop: 16, fontSize: 12.5, color: "var(--muted)" }}>David · Jollof &amp; Co, Houston</div>
+          </div>
+
+          <GlassPillar icon={<Icon.spark />} tag="Marketing" title="AI marketing" accent="var(--plum)" lift={10}
+            copy="It watches your slow hours and quiet regulars, then writes the campaign for you.">
+            <MockAIIdea />
+          </GlassPillar>
+
+          <GlassPillar icon={<Icon.heart />} tag="Content" title="Creative content" accent="var(--rose)" lift={-30}
+            copy="On-brand posts, promos, and signage — a content studio that knows your menu." />
+
+          {/* dashboard glimpse — the tease, not the tour */}
+          <div data-h-panel data-tilt className="glass-card glass-card-dark" style={{ width: 370, flexShrink: 0, padding: 24, marginTop: 30 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+              <span className="mono" style={{ color: "rgba(243,234,215,0.55)" }}>Visits · last 30 days</span>
+              <span style={{ fontFamily: "var(--display)", fontSize: 15, fontWeight: 600, color: "#B9C99C" }}>↗ +28%</span>
             </div>
-          </DriftPanel>
-
-          {/* P2 — SLOW HOURS */}
-          <DriftPanel bg="var(--sand)">
-            <div className="grain grain-soft" style={{ position: "absolute", inset: 0 }} />
-            <div className="container" style={{ position: "relative", zIndex: 2 }}>
-              <div className="r-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
-                <div>
-                  <div className="eyebrow"><span className="dot" /> 14:00 · the quiet stretch</div>
-                  <h3 style={{ marginTop: 24, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(40px, 4.6vw, 72px)", letterSpacing: "-0.04em", lineHeight: 0.98 }}>
-                    2 PM fills<br/><span className="serif-it" style={{ fontWeight: 400, color: "var(--terra)" }}>itself.</span>
-                  </h3>
-                  <p style={{ marginTop: 20, maxWidth: 420, fontSize: 17, lineHeight: 1.55, color: "var(--ink-soft)" }}>
-                    Aura spots the dip and sends the offer before you've thought about it.
-                  </p>
-                  <div style={{ marginTop: 24, maxWidth: 380 }}><MockAIIdea /></div>
-                </div>
-                {/* tilted dashboard glimpse — a tease, not a tour */}
-                <div style={{ transform: "rotate(2.5deg)", maxWidth: 460, justifySelf: "center" }}>
-                  <div style={{
-                    padding: 22, borderRadius: 20,
-                    background: "linear-gradient(180deg, #2A1F18 0%, #1F1612 100%)",
-                    color: "var(--cream)",
-                    border: "1px solid rgba(243,234,215,0.08)",
-                    boxShadow: "0 50px 100px -40px rgba(42,31,24,0.5)",
-                  }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                      <span className="mono" style={{ color: "rgba(243,234,215,0.5)" }}>Visits · last 30 days</span>
-                      <span style={{ fontFamily: "var(--display)", fontSize: 15, fontWeight: 600, color: "#B9C99C" }}>↗ +28%</span>
-                    </div>
-                    <div style={{ fontFamily: "var(--display)", fontSize: 30, fontWeight: 600, letterSpacing: "-0.035em", marginTop: 8 }}>
-                      <span data-count data-to="612" data-prefix="+$">+$0</span>
-                      <span style={{ fontSize: 13, fontWeight: 400, color: "rgba(243,234,215,0.55)", marginLeft: 8 }}>margin this week</span>
-                    </div>
-                    <BigChart />
-                  </div>
-                </div>
-              </div>
+            <div style={{ fontFamily: "var(--display)", fontSize: 28, fontWeight: 600, letterSpacing: "-0.035em", marginTop: 8 }}>
+              <span data-count data-to="612" data-prefix="+$">+$0</span>
+              <span style={{ fontSize: 13, fontWeight: 400, color: "rgba(243,234,215,0.55)", marginLeft: 8 }}>margin this week</span>
             </div>
-          </DriftPanel>
+            <BigChart />
+          </div>
 
-          {/* P3 — AFTER CLOSE */}
-          <DriftPanel bg="var(--espresso)" color="var(--cream)" dark>
-            <div className="grain grain-on-dark" style={{ position: "absolute", inset: 0 }} />
-            <div style={{
-              position: "absolute", inset: 0,
-              background: "radial-gradient(ellipse 600px 700px at 70% 50%, rgba(232,172,88,0.22), transparent 65%)",
-              pointerEvents: "none",
-            }} />
-            <div className="container" style={{ position: "relative", zIndex: 2 }}>
-              <div className="r-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
-                <div>
-                  <div className="eyebrow" style={{ color: "rgba(243,234,215,0.6)" }}><span className="dot" style={{ background: "var(--saffron)", boxShadow: "0 0 10px var(--saffron)" }} /> 22:40 · after close</div>
-                  <h3 style={{ marginTop: 24, fontFamily: "var(--display)", fontWeight: 500, fontSize: "clamp(40px, 4.6vw, 72px)", letterSpacing: "-0.04em", lineHeight: 0.98, color: "var(--cream)" }}>
-                    The café stays<br/><span className="serif-it" style={{ fontWeight: 400, color: "var(--saffron)" }}>in their pocket.</span>
-                  </h3>
-                  <p style={{ marginTop: 20, maxWidth: 420, fontSize: 17, lineHeight: 1.55, color: "rgba(243,234,215,0.7)" }}>
-                    The lights are off. The streak is alive. Tomorrow's usual is one tap away.
-                  </p>
-                </div>
-                <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: 360 }}>
-                  {/* MEDIA SLOT: steam-dark.png over a soft spotlight */}
-                  <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 280px 360px at 50% 50%, rgba(232,172,88,0.3), transparent 70%)", filter: "blur(20px)" }} />
-                  <BrandPhoto src="/assets/brand/steam-dark.png" alt="" radius={0} fallback={null}
-                    style={{ position: "absolute", top: -20, left: "50%", transform: "translateX(-50%)", width: 180, height: 240, mixBlendMode: "screen", opacity: 0.7, pointerEvents: "none" }}
-                    imgStyle={{ width: "100%", height: "100%", objectFit: "contain" }} />
-                  <div style={{ position: "relative", animation: "float-y 8s ease-in-out infinite" }}>
-                    <NotifCard icon={<Icon.coffee />} accent="var(--saffron)" label="Your usual, ready at 8:14" sub="320m away · streak day 6" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </DriftPanel>
+          <GlassPillar icon={<Icon.users />} tag="Community" title="Community & events" accent="var(--sage)" lift={-14}
+            copy="Tastings, launch nights, member moments — bonds that algorithms can't touch." />
 
-          {/* P4 — THE VISION. Almost empty. Breathing room. */}
-          <DriftPanel bg="var(--clay)">
-            {/* MEDIA SLOT: drop /public/media/waves-dream.mp4 */}
-            <VideoWaveBg src="/media/waves-dream.mp4" opacity={0.4} fallbackVariant="dusk"
-              veil="linear-gradient(0deg, rgba(222,203,166,0.5), rgba(222,203,166,0.2))" />
-            <div className="container" style={{ position: "relative", zIndex: 2, textAlign: "center" }}>
-              <div className="eyebrow" style={{ justifyContent: "center" }}><span className="dot" /> the part that matters</div>
-              <h3 className="serif-it" style={{ marginTop: 28, fontWeight: 400, fontSize: "clamp(48px, 7vw, 110px)", letterSpacing: "-0.025em", lineHeight: 1.0, color: "var(--espresso)" }}>
-                A place people<br/>belong to.
-              </h3>
-            </div>
-          </DriftPanel>
-
+          <GlassPillar icon={<Icon.trend />} tag="Insights" title="Insights that matter" accent="var(--honey)" lift={40}
+            copy="Who's returning, who's fading, what worked — in plain language, not dashboards." />
         </div>
       </div>
     </section>
@@ -1268,7 +1316,7 @@ function OfferSection() {
 
         {/* the offer card */}
         <Reveal delay={80}>
-          <div style={{
+          <div data-offer-card style={{
             marginTop: 100, maxWidth: 760, marginInline: "auto",
             padding: "clamp(36px, 5vw, 60px)",
             borderRadius: 28, textAlign: "center",
@@ -1366,6 +1414,27 @@ function FinalClose() {
       </div>
     </footer>
   );
+}
+
+/* ───────────── SCROLL PROGRESS AURA ───────────── */
+function ScrollProgress() {
+  const ref = useRef(null);
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const p = max > 0 ? window.scrollY / max : 0;
+        if (ref.current) ref.current.style.width = `${(p * 100).toFixed(2)}%`;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => { window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+  return <div ref={ref} className="scroll-aura" aria-hidden="true" />;
 }
 
 /* ───────────── MOBILE STICKY CTA ───────────── */
@@ -1544,9 +1613,69 @@ function App() {
       });
     }
 
+    /* ── Dopamine layer (all gated on motion + pointer) ─────────── */
+    const cleanups = [];
+    const hasHover = window.matchMedia("(hover: hover)").matches;
+
+    if (!reduceMotion && hasHover) {
+      /* 3D tilt + light sweep on glass cards */
+      document.querySelectorAll("[data-tilt]").forEach((card) => {
+        const onMove = (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width;
+          const py = (e.clientY - r.top) / r.height;
+          card.style.setProperty("--mx", `${(px * 100).toFixed(1)}%`);
+          card.style.setProperty("--my", `${(py * 100).toFixed(1)}%`);
+          card.style.transform = `perspective(900px) rotateX(${((0.5 - py) * 7).toFixed(2)}deg) rotateY(${((px - 0.5) * 7).toFixed(2)}deg)`;
+        };
+        const onLeave = () => { card.style.transform = ""; };
+        card.addEventListener("mousemove", onMove);
+        card.addEventListener("mouseleave", onLeave);
+        cleanups.push(() => { card.removeEventListener("mousemove", onMove); card.removeEventListener("mouseleave", onLeave); });
+      });
+
+      /* magnetic primary CTAs */
+      document.querySelectorAll(".btn-primary").forEach((btn) => {
+        const onMove = (e) => {
+          const r = btn.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width / 2)) * 0.12;
+          const dy = (e.clientY - (r.top + r.height / 2)) * 0.2;
+          btn.style.transform = `translate(${Math.max(-6, Math.min(6, dx)).toFixed(1)}px, ${Math.max(-6, Math.min(6, dy)).toFixed(1)}px)`;
+        };
+        const onLeave = () => { btn.style.transform = ""; };
+        btn.addEventListener("mousemove", onMove);
+        btn.addEventListener("mouseleave", onLeave);
+        cleanups.push(() => { btn.removeEventListener("mousemove", onMove); btn.removeEventListener("mouseleave", onLeave); });
+      });
+    }
+
+    /* confetti — once, when the offer card reveals */
+    if (!reduceMotion) {
+      const offerCard = document.querySelector("[data-offer-card]");
+      if (offerCard) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => {
+            if (!en.isIntersecting) return;
+            io.disconnect();
+            import("canvas-confetti").then(({ default: confetti }) => {
+              confetti({
+                particleCount: 90, spread: 75, startVelocity: 26, gravity: 0.65, scalar: 0.9,
+                origin: { x: 0.5, y: 0.55 },
+                colors: ["#D67A45", "#E5B14A", "#DC8B7E", "#8D6B8D", "#E8AC58"],
+                disableForReducedMotion: true,
+              });
+            }).catch(() => {});
+          });
+        }, { threshold: 0.45 });
+        io.observe(offerCard);
+        cleanups.push(() => io.disconnect());
+      }
+    }
+
     return () => {
       triggers.forEach((tr) => tr.kill());
       ScrollTrigger.getAll().forEach((tr) => tr.kill());
+      cleanups.forEach((fn) => fn());
     };
   }, []);
 
@@ -1554,10 +1683,12 @@ function App() {
     <>
       <TopNav />
 
+      <ScrollProgress />
       <HeroSection />
-      <LeakSection />
+      <WelcomeSection />
       <StickyPhoneJourney />
-      <HorizontalDrift />
+      <GlassEcosystem />
+      <LeakSection />
       <ClubZoneSection />
       <OfferSection />
       <FinalClose />
