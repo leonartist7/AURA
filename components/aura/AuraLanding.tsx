@@ -187,7 +187,7 @@ function TopNav() {
         </a>
         <div className="nav-links" style={{ display: "flex", gap: 32, fontSize: 14, color: "var(--ink)", fontWeight: 500 }}>
           <a href="#journey">How it feels</a>
-          <a href="#club">The Club</a>
+          <a href="#ecosystem">Ecosystem</a>
           <a href="#offer">The Offer</a>
           <a href="/diagnostic">Café health check</a>
         </div>
@@ -1131,71 +1131,9 @@ function ZoneMap() {
         if (taken.has(d.key)) {
           return <circle key={d.key} cx={d.x} cy={d.y} r="6" fill="var(--saffron)" opacity="0.85" data-zone-dot />;
         }
-        return <circle key={d.key} cx={d.x} cy={d.y} r="2.5" fill="var(--ink)" opacity="0.14" />;
+        return <circle key={d.key} cx={d.x} cy={d.y} r="2.5" fill="rgba(243,234,215,0.85)" opacity="0.22" />;
       })}
     </svg>
-  );
-}
-
-function ClubZoneSection() {
-  const lines = [
-    { i: <Icon.users />, t: "Equal visibility inside the club", s: "We sign a few places per neighborhood — partners never compete for Aura's spotlight." },
-    { i: <Icon.heart />, t: "A growth team on your side", s: "Strategy, content, and support that doesn't end at setup. We grow when you grow." },
-    { i: <Icon.check />, t: "Your customers, your data", s: "Names, numbers, favorites, visits — always yours. Never rented back to you." },
-  ];
-  return (
-    <section id="club" className="section grain grain-soft" style={{ background: "var(--cream)", paddingTop: 150, paddingBottom: 150 }}>
-      <div className="container">
-        <div className="r-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-          <Reveal>
-            <div className="eyebrow"><span className="dot" /> The club</div>
-            <h2 style={{ marginTop: 26, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(40px, 5vw, 76px)", letterSpacing: "-0.04em", lineHeight: 0.98 }}>
-              We don't<br/>sign everyone.
-            </h2>
-            <p className="serif-it" style={{ marginTop: 16, fontSize: "clamp(24px, 2.4vw, 34px)", color: "var(--terra)", letterSpacing: "-0.015em", lineHeight: 1.1 }}>
-              A few places per neighborhood.
-            </p>
-            <div style={{ marginTop: 36, display: "grid", gap: 18 }}>
-              {lines.map((l) => (
-                <div key={l.t} style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
-                  <div style={{ width: 38, height: 38, borderRadius: 11, flexShrink: 0, background: "rgba(214,122,69,0.12)", border: "1px solid rgba(214,122,69,0.25)", color: "var(--terra)", display: "flex", alignItems: "center", justifyContent: "center" }}>{l.i}</div>
-                  <div>
-                    <div style={{ fontFamily: "var(--display)", fontWeight: 600, fontSize: 18, letterSpacing: "-0.02em" }}>{l.t}</div>
-                    <div style={{ marginTop: 4, fontSize: 14.5, lineHeight: 1.5, color: "var(--ink-soft)", maxWidth: 420 }}>{l.s}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div style={{
-              padding: 36, borderRadius: 24,
-              background: "rgba(252,247,236,0.9)",
-              border: "1px solid rgba(42,31,24,0.08)",
-              boxShadow: "0 40px 90px -50px rgba(42,31,24,0.3)",
-            }}>
-              <ZoneMap />
-              <div style={{ marginTop: 26, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
-                <div style={{ display: "flex", gap: 18, fontSize: 12.5, color: "var(--ink-soft)" }}>
-                  <span><span style={{ display: "inline-block", width: 9, height: 9, borderRadius: "50%", background: "var(--saffron)", marginRight: 7 }} />Partner</span>
-                  <span><span style={{ display: "inline-block", width: 9, height: 9, borderRadius: "50%", background: "var(--terra)", marginRight: 7 }} />Your zone</span>
-                </div>
-                <span style={{
-                  display: "inline-flex", alignItems: "center", gap: 8,
-                  padding: "8px 14px", borderRadius: 999,
-                  background: "rgba(214,122,69,0.1)", border: "1px solid rgba(214,122,69,0.3)",
-                  fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--ink)",
-                }}>
-                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--terra)", boxShadow: "0 0 8px var(--terra)", animation: "pulse-glow 2.4s ease-in-out infinite" }} />
-                  {ZONES_OPEN} of {ZONES_TOTAL} zones open nearby
-                </span>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -1369,24 +1307,61 @@ function FinalClose() {
       <div style={{ position: "absolute", left: "50%", top: -80, transform: "translateX(-50%)", width: 800, height: 300, background: "radial-gradient(ellipse, rgba(232,172,88,0.2), transparent 60%)", filter: "blur(40px)", pointerEvents: "none" }} />
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
-        {/* the closing question */}
-        <div style={{ textAlign: "center", maxWidth: 980, margin: "0 auto 110px" }}>
+        {/* the closing question + the zone claim (scarcity lives here, not its own section) */}
+        <div style={{ textAlign: "center", maxWidth: 1000, margin: "0 auto 110px" }}>
           <h2 style={{ fontFamily: "var(--display)", fontWeight: 500, fontSize: "clamp(42px, 6vw, 92px)", letterSpacing: "-0.045em", lineHeight: 0.98 }}>
             Ready to be the place<br/>
             <span className="serif-it" style={{ fontWeight: 400, color: "var(--saffron)" }}>they come back to?</span>
           </h2>
-          <div style={{ marginTop: 40, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="#offer" className="btn-primary" style={{ background: "var(--cream)", color: "var(--ink)", padding: "18px 28px", fontSize: 15 }}>
-              Claim your free month <span className="arrow-circle" style={{ background: "var(--ink)", color: "var(--cream)" }}>→</span>
-            </a>
-            <a href="#offer" className="btn-secondary btn-light">Book a 20-min demo</a>
+          <p style={{ marginTop: 22, maxWidth: 540, marginInline: "auto", fontSize: 16, lineHeight: 1.55, color: "rgba(243,234,215,0.7)" }}>
+            We don't sign everyone — only a few cafés &amp; kitchens per neighborhood, so your spotlight is never split.
+          </p>
+
+          {/* the zone claim card — map + live scarcity + the community promise */}
+          <div className="glass-card glass-card-dark" data-tilt style={{
+            marginTop: 44, maxWidth: 720, marginInline: "auto", padding: "clamp(28px, 4vw, 44px)",
+            textAlign: "left",
+          }}>
+            <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.05fr) minmax(0, 0.95fr)", gap: "clamp(24px, 4vw, 44px)", alignItems: "center" }} className="r-2">
+              <div>
+                <span style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  padding: "8px 14px", borderRadius: 999,
+                  background: "rgba(232,172,88,0.14)", border: "1px solid rgba(232,172,88,0.4)",
+                  fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--saffron)",
+                }}>
+                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--saffron)", boxShadow: "0 0 8px var(--saffron)", animation: "pulse-glow 2.4s ease-in-out infinite" }} />
+                  Only {ZONES_OPEN} of {ZONES_TOTAL} spots open nearby
+                </span>
+                <h3 style={{ marginTop: 18, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(28px, 3vw, 40px)", letterSpacing: "-0.03em", lineHeight: 1.02, color: "var(--cream)" }}>
+                  Claim your zone.
+                </h3>
+                <p style={{ marginTop: 12, fontSize: 14, lineHeight: 1.55, color: "rgba(243,234,215,0.66)" }}>
+                  Your growth team, not just software. Your customers and data stay yours — always.
+                </p>
+                <div style={{ marginTop: 26, display: "flex", gap: 12, flexWrap: "wrap" }}>
+                  <a href="#offer" className="btn-primary" style={{ background: "var(--cream)", color: "var(--ink)", padding: "16px 26px", fontSize: 15 }}>
+                    Claim your free month <span className="arrow-circle" style={{ background: "var(--ink)", color: "var(--cream)" }}>→</span>
+                  </a>
+                  <a href="#offer" className="btn-secondary btn-light">Book a 20-min demo</a>
+                </div>
+              </div>
+              <div style={{ position: "relative" }}>
+                <ZoneMap />
+                <div style={{ marginTop: 16, display: "flex", gap: 18, fontSize: 12, color: "rgba(243,234,215,0.6)", justifyContent: "center", flexWrap: "wrap" }}>
+                  <span><span style={{ display: "inline-block", width: 9, height: 9, borderRadius: "50%", background: "var(--saffron)", marginRight: 7 }} />Taken</span>
+                  <span><span style={{ display: "inline-block", width: 9, height: 9, borderRadius: "50%", background: "var(--terra)", marginRight: 7 }} />Your zone</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div style={{ marginTop: 36, display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap", fontSize: 10.5, fontFamily: "var(--mono)", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(243,234,215,0.45)" }}>
-            <span>20-minute call</span>
+
+          <div style={{ marginTop: 30, display: "flex", justifyContent: "center", gap: 22, flexWrap: "wrap", fontSize: 10.5, fontFamily: "var(--mono)", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(243,234,215,0.45)" }}>
+            <span>First month free</span>
             <span>·</span>
             <span>No commitment</span>
             <span>·</span>
-            <span>{ZONES_OPEN} zones open nearby</span>
+            <span>Cancel anytime</span>
           </div>
         </div>
 
@@ -1395,7 +1370,7 @@ function FinalClose() {
           <Logo light size={24} />
           <div style={{ display: "flex", gap: 26, fontSize: 13.5, color: "rgba(243,234,215,0.75)", flexWrap: "wrap" }}>
             <a href="#journey">How it feels</a>
-            <a href="#club">The Club</a>
+            <a href="#ecosystem">Ecosystem</a>
             <a href="#offer">The Offer</a>
             <a href="/diagnostic">Café health check</a>
             <a href="#">Instagram</a>
@@ -1496,15 +1471,15 @@ function App() {
     if (typeof gsap === "undefined" || !gsap.registerPlugin) return;
     if (typeof ScrollTrigger === "undefined") return;
 
-    // CSS unrolls all pinned stages into static stacks for reduced-motion
-    // and small screens; here we simply don't create the ScrollTriggers.
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isNarrow = window.matchMedia("(max-width: 860px)").matches;
-
+    // Motion stays ON for everyone (product decision) — we do NOT gate on
+    // prefers-reduced-motion. gsap.matchMedia builds the cinematic pins above
+    // 860px and tears them down below (CSS collapses those stages to static
+    // stacks there); it re-evaluates on resize, so a small mount-time viewport
+    // can't permanently disable the pins.
     gsap.registerPlugin(ScrollTrigger);
-    const triggers = [];
+    const mm = gsap.matchMedia();
 
-    if (!reduceMotion && !isNarrow) {
+    mm.add("(min-width: 861px)", () => {
       /* ── LEAK pin: 3 beats ── */
       const leak = document.querySelector("[data-pin-problem]");
       if (leak) {
@@ -1522,10 +1497,10 @@ function App() {
           });
           if (idxEl) idxEl.textContent = String(i + 1).padStart(2, "0");
         };
-        triggers.push(ScrollTrigger.create({
+        ScrollTrigger.create({
           trigger: leak, start: "top top", end: "bottom bottom", scrub: 0.4,
           onUpdate: (self) => showIdx(Math.min(cards.length - 1, Math.floor(self.progress * cards.length))),
-        }));
+        });
         showIdx(0);
       }
 
@@ -1553,25 +1528,26 @@ function App() {
             d.style.background = n <= i ? "var(--terra)" : "rgba(42,31,24,0.15)";
           });
         };
-        triggers.push(ScrollTrigger.create({
+        ScrollTrigger.create({
           trigger: journey, start: "top top", end: "bottom bottom", scrub: 0.4,
           onUpdate: (self) => show(Math.min(JOURNEY_BEATS.length - 1, Math.floor(self.progress * JOURNEY_BEATS.length))),
-        }));
+        });
         show(0);
       }
 
-      /* ── HORIZONTAL DRIFT ── */
+      /* ── GLASS ECOSYSTEM: vertical scroll drives the cards horizontally ── */
       const drift = document.querySelector("[data-h-drift]");
       if (drift) {
         const track = drift.querySelector("[data-h-track]");
         if (track) {
-          triggers.push(ScrollTrigger.create({
+          ScrollTrigger.create({
             trigger: drift, start: "top top", end: "bottom bottom", scrub: 0.5,
+            invalidateOnRefresh: true,
             onUpdate: (self) => {
-              const max = track.scrollWidth - window.innerWidth;
+              const max = Math.max(0, track.scrollWidth - window.innerWidth);
               gsap.set(track, { x: -max * self.progress });
             },
-          }));
+          });
         }
       }
 
@@ -1579,7 +1555,9 @@ function App() {
       gsap.fromTo("[data-hero-stagger]",
         { opacity: 0, y: 26 },
         { opacity: 1, y: 0, duration: 0.9, ease: "power2.out", stagger: 0.1, delay: 0.15 });
-    }
+
+      return () => {}; // ScrollTriggers auto-revert via matchMedia scope
+    });
 
     /* ── Count-ups (animate when allowed; otherwise show final values) ── */
     gsap.utils.toArray("[data-count]").forEach((el) => {
@@ -1588,10 +1566,6 @@ function App() {
       const suffix = el.dataset.suffix || "";
       const dec = el.dataset.decimals ? parseInt(el.dataset.decimals, 10) : 0;
       const fmt = (v) => prefix + v.toLocaleString("en-US", { maximumFractionDigits: dec, minimumFractionDigits: dec }) + suffix;
-      if (reduceMotion) {
-        el.textContent = fmt(to);
-        return;
-      }
       const obj = { v: 0 };
       gsap.to(obj, {
         v: to, duration: 1.8, ease: "power2.out",
@@ -1601,23 +1575,21 @@ function App() {
     });
 
     /* ── Soft reveals ── */
-    if (!reduceMotion) {
-      gsap.utils.toArray(".reveal").forEach((el) => {
-        gsap.fromTo(el,
-          { opacity: 0, y: 28 },
-          {
-            opacity: 1, y: 0, duration: 0.9, ease: "power2.out",
-            scrollTrigger: { trigger: el, start: "top 88%", once: true },
-          }
-        );
-      });
-    }
+    gsap.utils.toArray(".reveal").forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1, y: 0, duration: 0.9, ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
+        }
+      );
+    });
 
-    /* ── Dopamine layer (all gated on motion + pointer) ─────────── */
+    /* ── Dopamine layer (gated only on real pointer capability) ── */
     const cleanups = [];
     const hasHover = window.matchMedia("(hover: hover)").matches;
 
-    if (!reduceMotion && hasHover) {
+    if (hasHover) {
       /* 3D tilt + light sweep on glass cards */
       document.querySelectorAll("[data-tilt]").forEach((card) => {
         const onMove = (e) => {
@@ -1649,8 +1621,8 @@ function App() {
       });
     }
 
-    /* confetti — once, when the offer card reveals */
-    if (!reduceMotion) {
+    /* confetti — once, when the offer card reveals (always on) */
+    {
       const offerCard = document.querySelector("[data-offer-card]");
       if (offerCard) {
         const io = new IntersectionObserver((entries) => {
@@ -1658,22 +1630,30 @@ function App() {
             if (!en.isIntersecting) return;
             io.disconnect();
             import("canvas-confetti").then(({ default: confetti }) => {
-              confetti({
-                particleCount: 90, spread: 75, startVelocity: 26, gravity: 0.65, scalar: 0.9,
-                origin: { x: 0.5, y: 0.55 },
+              const fire = (particleRatio, opts) => confetti({
+                origin: { x: 0.5, y: 0.58 },
                 colors: ["#D67A45", "#E5B14A", "#DC8B7E", "#8D6B8D", "#E8AC58"],
-                disableForReducedMotion: true,
+                disableForReducedMotion: false,
+                particleCount: Math.floor(160 * particleRatio),
+                scalar: 0.9,
+                ...opts,
               });
+              // layered burst reads richer than one pop
+              fire(0.25, { spread: 26, startVelocity: 32 });
+              fire(0.2, { spread: 60 });
+              fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+              fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.1 });
+              fire(0.1, { spread: 120, startVelocity: 45 });
             }).catch(() => {});
           });
-        }, { threshold: 0.45 });
+        }, { threshold: 0.4 });
         io.observe(offerCard);
         cleanups.push(() => io.disconnect());
       }
     }
 
     return () => {
-      triggers.forEach((tr) => tr.kill());
+      mm.revert();
       ScrollTrigger.getAll().forEach((tr) => tr.kill());
       cleanups.forEach((fn) => fn());
     };
@@ -1689,7 +1669,6 @@ function App() {
       <StickyPhoneJourney />
       <GlassEcosystem />
       <LeakSection />
-      <ClubZoneSection />
       <OfferSection />
       <FinalClose />
       <MobileStickyCTA />

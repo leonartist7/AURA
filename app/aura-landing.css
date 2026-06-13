@@ -41,7 +41,9 @@
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /* clip (not hidden) tames horizontal overflow WITHOUT creating a scroll
+       container — `overflow:hidden` here silently breaks position:sticky pins. */
+    overflow-x: clip;
     line-height: 1.5;
   }
 
@@ -489,53 +491,12 @@
     body { padding-bottom: 80px; }
   }
 
-  /* ── Reduced motion - respect the OS setting (skill: HIGH severity) ─────── */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
-      scroll-behavior: auto !important;
-    }
-    html { scroll-behavior: auto !important; }
-    .reveal, .reveal-pre { opacity: 1 !important; transform: none !important; }
-    /* unpin the cinematic sections so there's no scroll-driven motion */
-    [data-pin-problem], [data-pin-cozy] { min-height: 0 !important; }
-    [data-pin-problem] > div, [data-pin-cozy] > div {
-      position: static !important; height: auto !important; overflow: visible !important;
-      padding: 110px 0 !important;
-    }
-    [data-pin-problem] [data-pain-card] {
-      position: static !important; opacity: 1 !important; transform: none !important; margin-bottom: 28px;
-    }
-    [data-pin-problem] [data-pain-stack] { height: auto !important; }
-    [data-pin-problem] [data-pain-idx-wrap], [data-pin-problem] [data-pain-dots] { display: none !important; }
-    [data-pin-cozy] [data-cozy-line] {
-      position: static !important; inset: auto !important; opacity: 1 !important; transform: none !important; margin-bottom: 40px;
-    }
-    [data-pin-cozy] [data-cozy-stack] { height: auto !important; }
-    [data-pin-cozy] [data-cozy-dots] { display: none !important; }
-
-    /* sticky phone journey + horizontal drift unroll to static stacks */
-    [data-pin-journey] { min-height: 0 !important; }
-    [data-pin-journey] .journey-desktop { display: none !important; }
-    [data-pin-journey] .journey-mobile { display: block !important; }
-    [data-h-drift] { min-height: 0 !important; }
-    [data-h-drift] > div {
-      position: static !important; height: auto !important; overflow: visible !important;
-      padding: 90px 0;
-    }
-    [data-h-drift] .glass-head { position: static !important; padding: 0 24px 36px !important; }
-    [data-h-drift] [data-h-track] {
-      transform: none !important; display: grid !important; width: 100% !important; height: auto !important;
-      gap: 18px; padding: 0 24px !important;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-    [data-h-drift] [data-h-panel] {
-      width: 100% !important; margin-top: 0 !important;
-    }
-    .scroll-aura { display: none; }
-  }
+  /* ── Motion is intentional here and stays ON for everyone (product decision).
+     We do NOT gate the cinematic pins / scroll storytelling behind
+     prefers-reduced-motion — the experience IS the pitch. Performance is kept
+     safe instead: only transform/opacity animate, scroll work is rAF-throttled
+     and passive, and the heavy pins collapse to static stacks on small screens
+     (the max-width rules above), where scroll-jacking would actually hurt. ── */
 
 /* landing wrapper - owns bg/color/font so it does not fight the diagnostic layout */
-.aura-landing-root{font-family:var(--body);color:var(--ink);background:var(--cream);position:relative;min-height:100vh;overflow-x:hidden;}
+.aura-landing-root{font-family:var(--body);color:var(--ink);background:var(--cream);position:relative;min-height:100vh;overflow-x:clip;}
