@@ -1,7 +1,14 @@
 import type { Metadata, Viewport } from 'next';
-import { Fraunces, Inter } from 'next/font/google';
+import {
+  Fraunces,
+  Inter,
+  Bricolage_Grotesque,
+  Instrument_Serif,
+  JetBrains_Mono,
+} from 'next/font/google';
 import './globals.css';
 
+// Diagnostic flow fonts
 const fraunces = Fraunces({
   subsets: ['latin'],
   display: 'swap',
@@ -13,6 +20,27 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+});
+
+// AURA CLUB landing fonts — self-hosted via next/font (no render-blocking @import)
+const bricolage = Bricolage_Grotesque({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-bricolage',
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-instrument',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-jetbrains',
 });
 
 export const metadata: Metadata = {
@@ -32,7 +60,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
+  // no maximumScale/userScalable lock — allow pinch-zoom (WCAG 1.4.4)
   themeColor: '#FAF6F0',
 };
 
@@ -42,7 +70,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${fraunces.variable} ${inter.variable} ${bricolage.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
+    >
       <body className="aura-atmosphere min-h-dvh text-aura-espresso">
         {children}
       </body>

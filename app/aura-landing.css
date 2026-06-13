@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
-
   :root {
     /* ── Daylight arc - one warm tone family, no jarring flips ───────── */
     --cream:      #F3EAD7;   /* morning           - page base            */
@@ -23,10 +21,10 @@
     --sage:    #9DAA7E;  /* earth green    */
     --honey:   #E8AC58;
 
-    --display: "Bricolage Grotesque", "Geist", system-ui, sans-serif;
-    --serif:   "Instrument Serif", Georgia, serif;
-    --body:    "Geist", system-ui, -apple-system, sans-serif;
-    --mono:    "JetBrains Mono", ui-monospace, monospace;
+    --display: var(--font-bricolage), var(--font-inter), system-ui, sans-serif;
+    --serif:   var(--font-instrument), Georgia, serif;
+    --body:    var(--font-inter), system-ui, -apple-system, sans-serif;
+    --mono:    var(--font-jetbrains), ui-monospace, monospace;
 
     --container: 1240px;
   }
@@ -389,17 +387,10 @@
   }
   .stage.tall { /* parent height to let the sticky pin */ }
 
-  /* curtain wrapper: next section comes up over previous */
-  .curtain {
-    position: relative;
-    z-index: 2;
-  }
-  .curtain.lift {
-    will-change: transform;
-  }
-
   /* ── Interaction polish - hover lift + visible focus (applied app-wide) ─── */
-  .card-hover { transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s cubic-bezier(.2,.7,.2,1), border-color .28s; will-change: transform; }
+  /* no will-change here — it forced a GPU layer on every card; the transition
+     alone is smooth and avoids layer-count blowup. */
+  .card-hover { transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s cubic-bezier(.2,.7,.2,1), border-color .28s; }
   .card-hover:hover { transform: translateY(-4px); }
 
   a, button, [role="button"], .twk-x { cursor: pointer; }
@@ -462,19 +453,26 @@
     [data-pin-journey] .journey-desktop { display: none !important; }
     [data-pin-journey] .journey-mobile { display: block !important; }
 
-    /* glass ecosystem: unpin, cards stack vertically */
+    /* glass ecosystem: unpin → native horizontal swipe with scroll-snap */
     [data-h-drift] { min-height: 0 !important; }
     [data-h-drift] > div {
       position: static !important; height: auto !important; overflow: visible !important;
       padding: 72px 0 88px;
     }
-    [data-h-drift] .glass-head { position: static !important; padding: 0 20px 36px !important; }
+    [data-h-drift] .glass-head { position: static !important; padding: 0 20px 32px !important; }
     [data-h-drift] [data-h-track] {
-      transform: none !important; display: grid !important; width: 100% !important; height: auto !important;
-      gap: 18px; padding: 0 20px !important;
+      transform: none !important; width: auto !important; height: auto !important;
+      display: flex !important; flex-wrap: nowrap !important;
+      gap: 16px; padding: 8px 20px 20px !important;
+      overflow-x: auto; overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+    [data-h-drift] [data-h-track]::-webkit-scrollbar { display: none; }
     [data-h-drift] [data-h-panel] {
-      width: 100% !important; margin-top: 0 !important;
+      width: 82vw !important; max-width: 340px; flex: 0 0 auto !important;
+      margin-top: 0 !important; scroll-snap-align: center;
     }
   }
 
@@ -497,6 +495,31 @@
      safe instead: only transform/opacity animate, scroll work is rAF-throttled
      and passive, and the heavy pins collapse to static stacks on small screens
      (the max-width rules above), where scroll-jacking would actually hurt. ── */
+
+  /* ── Device-capability auto-tune (data-lite) ──────────────────────────
+     backdrop-filter re-samples everything behind it every frame — with 8 glass
+     cards in a scrubbed strip that's the #1 jank source on weak GPUs. On lite
+     devices we cut blur radii hard and lean on more-opaque translucency instead.
+     Motion/animation is untouched. */
+  [data-lite] .glass,
+  [data-lite] .notif {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+  [data-lite] .glass-card {
+    backdrop-filter: blur(7px) !important;
+    -webkit-backdrop-filter: blur(7px) !important;
+    background: linear-gradient(160deg, rgba(255,255,255,0.78), rgba(255,255,255,0.6)) !important;
+  }
+  [data-lite] .glass-card-dark {
+    background: linear-gradient(160deg, rgba(31,22,18,0.92), rgba(31,22,18,0.82)) !important;
+  }
+  [data-lite] .glass-card::after { display: none; } /* drop the pointer light-sweep layer */
+
+  /* ── content-visibility: skip painting the far-offscreen footer until near.
+     Kept to the footer only — pinned/scrubbed sections rely on ScrollTrigger
+     layout reads, and content-visibility can fight those. */
+  #close { content-visibility: auto; contain-intrinsic-size: 1px 1000px; }
 
 /* landing wrapper - owns bg/color/font so it does not fight the diagnostic layout */
 .aura-landing-root{font-family:var(--body);color:var(--ink);background:var(--cream);position:relative;min-height:100vh;overflow-x:clip;}

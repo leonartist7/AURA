@@ -234,16 +234,32 @@ function Reveal({ children, delay = 0, style, className = "", as: Tag = "div" })
 
 /* ───────────── Brand photo — warm-graded image slot with graceful fallback ───────────── */
 function BrandPhoto({ src, alt = "", fallback = null, radius = 16, grade = 0.22, eager = false, fill = false, style = {}, imgStyle = {}, children = null }) {
-  const [ok, setOk] = useState(true);
-  if (!ok) return fallback;
+  // Load-gated: preload off-DOM and only render the <img> once it actually
+  // decodes. Missing files never paint the browser's broken-image glyph —
+  // the graceful fallback shows until (and unless) the real asset arrives.
+  const [status, setStatus] = useState("loading"); // loading | ok | error
+  useEffect(() => {
+    if (!src) { setStatus("error"); return; }
+    let alive = true;
+    const img = new Image();
+    img.onload = () => { if (alive) setStatus("ok"); };
+    img.onerror = () => { if (alive) setStatus("error"); };
+    // @ts-ignore
+    if (eager) img.fetchPriority = "high";
+    img.src = src;
+    if (img.complete && img.naturalWidth > 0) setStatus("ok");
+    return () => { alive = false; };
+  }, [src, eager]);
+
+  if (status !== "ok") return fallback;
+
   const wrap = fill
     ? { position: "absolute", inset: 0, overflow: "hidden", ...style }
     : { position: "relative", overflow: "hidden", borderRadius: radius, ...style };
   return (
     <div style={wrap}>
       <img
-        src={src} alt={alt} onError={() => setOk(false)}
-        loading={eager ? "eager" : "lazy"} decoding="async"
+        src={src} alt={alt} decoding="async"
         // @ts-ignore
         fetchPriority={eager ? "high" : "auto"}
         style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", ...imgStyle }}
@@ -991,24 +1007,74 @@ function StickyPhoneJourney() {
         </div>
       </div>
 
-      {/* MOBILE / REDUCED-MOTION — clean static stack */}
+      {/* MOBILE — one phone auto-cycling through the 4 screens, compact beats */}
       <div className="journey-mobile">
-        <div className="container" style={{ padding: "88px 20px" }}>
-          {JOURNEY_BEATS.map((b, i) => (
-            <div key={b.k} style={{ marginBottom: 72 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--muted)" }}>{b.k} · {b.title}</div>
-              <h3 style={{ marginTop: 14, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(32px, 9vw, 44px)", letterSpacing: "-0.035em", lineHeight: 1.02 }}>{b.big}</h3>
-              <p style={{ marginTop: 14, fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)" }}>{b.body}</p>
-              <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
-                <div style={{ transform: "scale(0.82)", transformOrigin: "top center", height: 560 }}>
-                  <Phone>{JOURNEY_SCREENS[b.screen]}</Phone>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <MobileJourney />
       </div>
     </section>
+  );
+}
+
+/* Mobile journey: a single phone that auto-advances through the 4 ritual
+   screens while in view; beat copy crossfades with it. Short, premium, no
+   4-phone stack. Pauses when scrolled away (saves battery / main thread). */
+function MobileJourney() {
+  const [i, setI] = useState(0);
+  const wrapRef = useRef(null);
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    let timer = null;
+    const start = () => { if (!timer) timer = setInterval(() => setI((n) => (n + 1) % JOURNEY_BEATS.length), 2600); };
+    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { threshold: 0.25 });
+    io.observe(el);
+    return () => { stop(); io.disconnect(); };
+  }, []);
+  const beat = JOURNEY_BEATS[i];
+  return (
+    <div ref={wrapRef} className="container" style={{ padding: "96px 20px 104px", textAlign: "center" }}>
+      <div style={{ position: "relative", width: 300, height: 600, margin: "0 auto" }}>
+        <div style={{ position: "absolute", inset: -30, background: "radial-gradient(ellipse at 50% 45%, rgba(214,122,69,0.3), transparent 62%)" }} />
+        {Object.entries(JOURNEY_SCREENS).map(([key, node], n) => (
+          <div key={key} style={{
+            position: "absolute", inset: 0,
+            opacity: n === i ? 1 : 0,
+            transform: n === i ? "scale(1)" : "scale(0.97)",
+            transition: "opacity .5s cubic-bezier(.2,.7,.2,1), transform .5s cubic-bezier(.2,.7,.2,1)",
+            pointerEvents: "none",
+          }}>
+            <Phone scale={0.92}>{node}</Phone>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ position: "relative", minHeight: 132, marginTop: 32 }}>
+        {JOURNEY_BEATS.map((b, n) => (
+          <div key={b.k} style={{
+            position: n === i ? "relative" : "absolute", inset: 0,
+            opacity: n === i ? 1 : 0,
+            transition: "opacity .5s cubic-bezier(.2,.7,.2,1)",
+            pointerEvents: n === i ? "auto" : "none",
+          }}>
+            <div style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--muted)" }}>{b.k} · {b.title}</div>
+            <h3 style={{ marginTop: 12, fontFamily: "var(--display)", fontWeight: 600, fontSize: "clamp(30px, 8vw, 40px)", letterSpacing: "-0.035em", lineHeight: 1.04 }}>{b.big}</h3>
+            <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.55, color: "var(--ink-soft)", maxWidth: 420, marginInline: "auto" }}>{b.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: 26, display: "flex", justifyContent: "center", gap: 8 }}>
+        {JOURNEY_BEATS.map((_, n) => (
+          <button key={n} onClick={() => setI(n)} aria-label={`Step ${n + 1}`} style={{
+            width: n === i ? 26 : 16, height: 16, padding: 0, borderRadius: 999,
+            background: "transparent", position: "relative",
+          }}>
+            <span style={{ position: "absolute", left: 0, right: 0, top: "50%", transform: "translateY(-50%)", height: 3, borderRadius: 2, background: n === i ? "var(--terra)" : "rgba(42,31,24,0.18)", transition: "background .3s" }} />
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -1159,8 +1225,19 @@ const STORIES = [
 ];
 
 function TestimonialAvatar({ src, name, accent }) {
-  const [ok, setOk] = useState(true);
+  // Load-gated like BrandPhoto — show initials until/unless the photo decodes,
+  // so a missing avatar never paints a broken-image glyph.
+  const [loaded, setLoaded] = useState(false);
   const initials = name.split(" ").map((w) => w[0]).slice(0, 2).join("");
+  useEffect(() => {
+    if (!src) return;
+    let alive = true;
+    const img = new Image();
+    img.onload = () => { if (alive) setLoaded(true); };
+    img.src = src;
+    if (img.complete && img.naturalWidth > 0) setLoaded(true);
+    return () => { alive = false; };
+  }, [src]);
   return (
     <div style={{
       width: 52, height: 52, borderRadius: "50%", flexShrink: 0, overflow: "hidden",
@@ -1169,8 +1246,8 @@ function TestimonialAvatar({ src, name, accent }) {
       fontFamily: "var(--display)", fontWeight: 600, fontSize: 18, letterSpacing: "-0.02em",
       boxShadow: "0 8px 20px -10px rgba(42,31,24,0.4)",
     }}>
-      {ok
-        ? <img src={src} alt={`${name}, café owner`} onError={() => setOk(false)}
+      {loaded
+        ? <img src={src} alt={`${name}, café owner`} decoding="async"
                style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         : <span aria-hidden="true">{initials}</span>}
     </div>
@@ -1205,13 +1282,18 @@ function RotatingTestimonial() {
           </figcaption>
         </figure>
       ))}
-      <div style={{ marginTop: 26, display: "flex", justifyContent: "center", gap: 6 }}>
+      <div style={{ marginTop: 22, display: "flex", justifyContent: "center", gap: 2 }}>
         {STORIES.map((_, i) => (
           <button key={i} onClick={() => setIdx(i)} aria-label={`Show testimonial ${i + 1}`} style={{
-            width: i === idx ? 26 : 10, height: 3, borderRadius: 2, padding: 0,
-            background: i === idx ? "var(--terra)" : "rgba(42,31,24,0.18)",
-            transition: "width .3s, background .3s",
-          }} />
+            width: 28, height: 28, padding: 0, background: "transparent",
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+          }}>
+            <span style={{
+              width: i === idx ? 26 : 10, height: 3, borderRadius: 2,
+              background: i === idx ? "var(--terra)" : "rgba(42,31,24,0.18)",
+              transition: "width .3s, background .3s",
+            }} />
+          </button>
         ))}
       </div>
     </div>
@@ -1461,6 +1543,27 @@ function MobileStickyCTA() {
 /* ===== app ===== */
 
 function App() {
+  /* ── Device-capability auto-tune (NOT OS reduced-motion) ──────────
+     Weak devices (small viewport, few cores, coarse pointer) get `data-lite`
+     on the landing root, which lightens GPU-heavy blur via CSS. Motion stays on. */
+  useEffect(() => {
+    const root = document.querySelector(".aura-landing-root");
+    if (!root) return;
+    const apply = () => {
+      const small = window.matchMedia("(max-width: 860px)").matches;
+      const coarse = window.matchMedia("(pointer: coarse)").matches;
+      const lowCore = (navigator.hardwareConcurrency || 8) <= 4;
+      // Lite = phones/tablets, or a touch device that's also core-starved.
+      // A desktop with a fine pointer stays full-fidelity even at 4 cores.
+      const lite = small || (coarse && lowCore);
+      root.toggleAttribute("data-lite", lite);
+    };
+    apply();
+    const mq = window.matchMedia("(max-width: 860px)");
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
+
   /* ── GSAP ScrollTrigger orchestration ───────────────────────────
      - Leak pin: 3 beats cycle
      - Journey pin: 4 app screens swap + side beats alternate
