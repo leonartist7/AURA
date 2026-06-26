@@ -7,6 +7,7 @@ import {
   JetBrains_Mono,
 } from 'next/font/google';
 import './globals.css';
+import { SITE_URL, SITE_NAME } from '@/lib/site';
 
 // Diagnostic flow fonts
 const fraunces = Fraunces({
@@ -44,16 +45,29 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'AURA: Loyalty, ordering & marketing for cafés',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'AURA: Loyalty, ordering & marketing for cafés',
+    template: '%s · AURA CLUB',
+  },
   description:
     'AI-powered loyalty, marketing, and ordering systems for cafés and restaurants. Turn first-time visitors into regulars.',
   applicationName: 'Aura',
   authors: [{ name: 'Aura' }],
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'AURA: Loyalty, ordering & marketing for cafés',
     description:
       'Turn first-time visitors into regulars. Book a free growth demo.',
     type: 'website',
+    siteName: SITE_NAME,
+    url: SITE_URL,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AURA: Loyalty, ordering & marketing for cafés',
+    description:
+      'Turn first-time visitors into regulars. Book a free growth demo.',
   },
 };
 
@@ -75,6 +89,21 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} ${bricolage.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body className="aura-atmosphere min-h-dvh text-aura-espresso">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: SITE_NAME,
+              url: SITE_URL,
+              logo: `${SITE_URL}/icon.svg`,
+              description:
+                'AI-powered loyalty, marketing, and ordering for cafés and restaurants. Turn first-time visitors into regulars.',
+              sameAs: [],
+            }),
+          }}
+        />
         {children}
       </body>
     </html>
