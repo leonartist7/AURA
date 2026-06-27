@@ -7,6 +7,7 @@
    Pricing is intentionally held for the demo. Video-wave slots degrade to
    warm gradients until .mp4 files land in /public/media. */
 import * as React from "react";
+import HeroMoment from "./HeroMoment";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 if (typeof window !== "undefined") {
@@ -680,7 +681,7 @@ function HeroSection() {
                 filter: "blur(50px)"
               }} />
               <div data-hero-phone style={{ position: "relative", animation: "float-y-2 8s ease-in-out infinite" }}>
-                <Phone scale={0.94}><ScreenHome /></Phone>
+                <HeroMoment />
               </div>
             </div>
           </div>
