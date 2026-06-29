@@ -9,10 +9,15 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-export default function ConceptPage() {
+export default function ConceptPage({
+  searchParams,
+}: {
+  searchParams: { brand?: string };
+}) {
+  const brand = searchParams?.brand === 'aro' ? 'aro' : 'aura';
   return (
     <div className="aura-landing-root">
-      <ConceptHero />
+      <ConceptHero brand={brand} />
     </div>
   );
 }

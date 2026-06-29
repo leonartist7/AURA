@@ -232,11 +232,47 @@ function AuraCircle() {
   );
 }
 
-export default function ConceptHero() {
+function BrandLockup({ name }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+      <svg width="30" height="30" viewBox="0 0 32 32" style={{ overflow: 'visible' }}>
+        <defs>
+          <linearGradient id="lockG" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#D67A45" />
+            <stop offset="50%" stopColor="#E5B14A" />
+            <stop offset="100%" stopColor="#8D6B8D" />
+          </linearGradient>
+        </defs>
+        <circle cx="16" cy="16" r="14" fill="url(#lockG)" />
+        <circle cx="16" cy="16" r="6.5" fill="var(--cream)" />
+      </svg>
+      <span
+        style={{
+          fontFamily: 'var(--display)',
+          fontWeight: 700,
+          fontSize: 26,
+          letterSpacing: '-0.04em',
+          color: 'var(--ink)',
+        }}
+      >
+        {name}
+      </span>
+    </div>
+  );
+}
+
+export default function ConceptHero({ brand = 'aura' }) {
+  const isAro = brand === 'aro';
+  const name = isAro ? 'aro' : 'aura';
+  // the synthesis: if the name is "aro", "aura" becomes the feeling it protects
+  const sub = isAro
+    ? 'Every café has an aura. Aro keeps it glowing — remembering your regulars, welcoming them back, keeping the ritual alive. You stay in the moment, not the admin.'
+    : 'Every café has its people. Aura remembers them, welcomes them back, and keeps the ritual alive — so you stay in the moment, not the admin.';
   return (
     <section
       className="section grain grain-soft"
       style={{
+        position: 'relative',
         background: 'var(--cream)',
         minHeight: '100vh',
         display: 'flex',
@@ -245,6 +281,9 @@ export default function ConceptHero() {
         paddingBottom: 80,
       }}
     >
+      <div style={{ position: 'absolute', top: 40, left: 48, zIndex: 5 }}>
+        <BrandLockup name={name} />
+      </div>
       <div className="container" style={{ width: '100%' }}>
         <div
           className="r-hero"
@@ -258,7 +297,7 @@ export default function ConceptHero() {
           {/* LEFT — the feeling, with room to breathe */}
           <div>
             <div className="eyebrow">
-              <span className="dot" /> aura · the regulars club
+              <span className="dot" /> {name} · the regulars club
             </div>
 
             <h1
@@ -287,8 +326,7 @@ export default function ConceptHero() {
                 color: 'var(--ink-soft)',
               }}
             >
-              Every café has its people. AURA remembers them, welcomes them back,
-              and keeps the ritual alive — so you stay in the moment, not the admin.
+              {sub}
             </p>
 
             <div style={{ marginTop: 38, display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
